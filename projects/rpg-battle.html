@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Battle Project - Claude Code Learning Activity</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="site-title">Claude Code Learning Activity</a>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../getting-started.html">Getting Started</a></li>
+                <li class="dropdown">
+                    <a href="#projects">Projects ▾</a>
+                    <div class="dropdown-content">
+                        <a href="tic-tac-toe.html">Tic-Tac-Toe</a>
+                        <a href="word-guessing.html">Word Guessing</a>
+                        <a href="rpg-battle.html">RPG Battle</a>
+                        <a href="image-processing.html">Image Processing</a>
+                        <a href="machine-learning.html">Machine Learning</a>
+                    </div>
+                </li>
+                <li><a href="../prompting-guide.html">Prompting Guide</a></li>
+                <li><a href="../for-teachers.html">For Teachers</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Project: Turn-Based RPG Battle System</h1>
+
+        <div class="intro">
+            <span class="difficulty intermediate">Intermediate</span>
+            <p><strong>Estimated Time:</strong> 70-80 minutes | <strong>Language:</strong> Python</p>
+        </div>
+
+        <section>
+            <h2>Project Overview</h2>
+            <p>
+                This project guides you through building a turn-based combat system similar to those found in role-playing games. Players and enemies take turns choosing actions, dealing damage, defending, or using special abilities until one side emerges victorious. This type of system is foundational to many games and teaches important concepts about state management, game balance, and strategic decision-making in code.
+            </p>
+
+            <p>
+                Unlike simpler games where state is relatively static, RPG battles involve complex, changing state: character health fluctuates, temporary status effects apply and expire, abilities go on cooldown, and strategic resources get consumed. Managing this complexity requires careful organization and clear thinking about how different systems interact. The project teaches you to build systems where many pieces work together coherently rather than in isolation.
+            </p>
+
+            <p>
+                The starter code provides character creation with visual stat displays, immediately showing you characters with health bars and attributes. You will build upon this foundation to create combat mechanics, player choice systems, and strategic depth. The project offers extensive room for creativity through character classes, special abilities, items, status effects, and difficulty balancing.
+            </p>
+        </section>
+
+        <section>
+            <h2>What You Will Learn</h2>
+            <p>
+                This project develops several advanced programming competencies. You will work extensively with dictionaries as data structures for representing characters with multiple attributes. Understanding when and how to use dictionaries versus other structures is crucial for modeling complex entities in code. Characters have names, health, attack power, defense, and potentially many other attributes. Dictionaries provide a clean way to bundle related data together.
+            </p>
+
+            <p>
+                The project requires sophisticated state management across multiple systems that interact. Character health changes through combat. Defensive postures affect damage calculation temporarily. Special abilities have usage limits or cooldowns. Status effects modify behavior for limited durations. Managing all these interacting states teaches you to think systematically about program architecture. Poor organization leads to bugs where systems get out of sync; good organization makes the complexity manageable.
+            </p>
+
+            <p>
+                You will engage directly with game design considerations, not just programming. How much health should characters have? How much damage should attacks deal? Should defending completely block damage or just reduce it? Should special abilities be limited by usage count or cooldown timers? These questions have no single correct answer, but different choices create different player experiences. Testing and iterating to find good balance teaches you that software is not just about correctness but about creating satisfying user experiences.
+            </p>
+
+            <p>
+                Random number generation plays an important role in creating varied, interesting battles. Pure deterministic combat where the same actions always produce identical results becomes predictable and boring. Adding controlled randomness keeps battles engaging while still being fair. Learning to use randomness appropriately—enough to create variety but not so much that outcomes feel arbitrary—is a valuable skill that applies beyond games to simulations, testing, and many other domains.
+            </p>
+        </section>
+
+        <section>
+            <h2>Getting the Starter Code</h2>
+            <p>
+                Two versions of starter code provide different starting points based on your experience level. The beginner version includes character creation and stat display with visual health bars, giving you immediate visual feedback about character state. The advanced version additionally includes a working attack function with damage calculation, allowing you to focus more on battle flow and strategic elements.
+            </p>
+
+            <p>
+                Download the appropriate starter code and run it immediately to see what foundation you are building upon. Both versions demonstrate the character display system, showing you how stats are represented and visualized. Understanding this display system is important because it is how players perceive game state.
+            </p>
+
+            <div style="display: flex; gap: 1rem; margin: 2rem 0;">
+                <a href="../starter-code/rpg_beginner.py" download class="btn">Download Beginner Starter</a>
+                <a href="../starter-code/rpg_advanced.py" download class="btn btn-secondary">Download Advanced Starter</a>
+            </div>
+
+            <div class="note">
+                <strong>First Step:</strong> After downloading, run <code>python rpg_beginner.py</code> (or <code>rpg_advanced.py</code>). The demonstration shows you character creation and stat display. Pay attention to how the health bar visualizes HP percentage and how character attributes are stored in the dictionary structure.
+            </div>
+        </section>
+
+        <section>
+            <h2>Phase 1: Planning Your Build (15 minutes)</h2>
+            <p>
+                Before writing combat code, think carefully about how battles should flow and what information needs to be tracked. A turn-based battle has clear structure: display current state, get player choice, execute player action, check for victory, execute enemy action, check for victory, repeat. This structure provides a framework to build upon, but many details need to be decided.
+            </p>
+
+            <p>
+                Consider what actions should be available to players. At minimum, attacking makes sense. Defending might reduce incoming damage for one turn. Special abilities provide strategic depth but need constraints to prevent overuse. Items could heal or provide buffs but require an inventory system. Start simple with attack and defend, then add complexity once the basics work. This incremental approach prevents overwhelming yourself with too many interconnected systems at once.
+            </p>
+
+            <h3>Understanding Character State</h3>
+            <p>
+                The starter code represents characters as dictionaries with keys for name, hp, max_hp, attack, and defense. This structure is extensible: you can add new keys as needed without restructuring existing code. If you want to add a character's level, just include a level key. If you want to track status effects, add a status key containing a list or set. This flexibility makes dictionaries excellent for representing game entities that may grow more complex over time.
+            </p>
+
+            <p>
+                Think about what happens to character state during battle. Health decreases when taking damage and potentially increases when healing. Temporary defense boosts apply and expire. Special abilities get used and become unavailable until certain conditions reset them. Managing these state transitions consistently prevents bugs where game state becomes incoherent. Writing down what can change and under what conditions helps you design clear, maintainable code.
+            </p>
+
+            <h3>Damage Calculation Considerations</h3>
+            <p>
+                How should damage be calculated? A simple approach subtracts the defender's defense from the attacker's attack to get damage dealt. This works but is entirely deterministic. Adding random variation makes each exchange feel different even with identical stats. The starter code includes randomness in its damage calculation, but you should understand the tradeoffs. Too much randomness makes battles feel arbitrary. Too little makes them predictable. Finding the right balance is part of game design.
+            </p>
+
+            <p>
+                Should there be minimum damage? If defense exceeds attack, deterministic calculation produces zero or negative damage. Guaranteeing at least 1 damage ensures battles progress even with stat imbalances, though it affects how defense works at high values. These seemingly small decisions compound to create the overall combat feel.
+            </p>
+        </section>
+
+        <section>
+            <h2>Phase 2: Building the Core Battle (35 minutes)</h2>
+            <p>
+                Build your battle system incrementally, starting with the simplest possible combat and gradually adding features. The starter code provides the foundation; your task is to create a working game loop with player interaction and victory conditions.
+            </p>
+
+            <h3>Implementing Combat Actions</h3>
+            <p>
+                Your first task is to create or complete the attack function that handles one character damaging another. This function calculates damage based on attacker and defender stats, reduces the defender's health, and returns information about what happened. The calculation might include the base attack value, the defender's defense, and some random variation to keep battles interesting. Ensure health never goes below zero, as negative health can cause confusing display issues.
+            </p>
+
+            <p>
+                When you have basic attacking working, add defensive postures. A defending action might temporarily increase a character's defense, reduce damage taken by a percentage, or regenerate a small amount of health. Different implementations create different strategic dynamics. Temporary defense increases reward planning ahead. Percentage-based reduction scales with damage received. Health regeneration provides sustain over long battles. Experiment to find what creates interesting decisions.
+            </p>
+
+            <h3>Player Choice System</h3>
+            <p>
+                Players need to choose actions each turn. Create a function that displays available actions, gets player input, validates the choice, and returns the selected action. The user interface does not need to be elaborate, but it should be clear. Numbering options (1: Attack, 2: Defend) works well. Validate input to handle cases where players enter invalid numbers, letters, or nothing at all. Robust input handling prevents frustrating crashes during gameplay.
+            </p>
+
+            <p>
+                As you add more action types, this choice system expands naturally. Each new action needs an entry in the menu and a handler in the execution code. Keeping this system organized becomes important as complexity grows. Consider using a dictionary to map choice numbers to action functions, making it easy to add new actions without extensive conditional logic.
+            </p>
+
+            <h3>Enemy Decision Making</h3>
+            <p>
+                Enemy actions need logic to decide what to do each turn. Start with simple approaches: always attack, or choose randomly between attacking and defending. Simple AI works fine for initial testing and can provide adequate challenge if stat balance is good. As you test, you might notice that smarter enemy behavior creates more interesting battles. An enemy that defends when low on health forces players to decide whether to attack through the defense or wait. An enemy that uses special abilities strategically creates tension.
+            </p>
+
+            <p>
+                Implementing enemy AI teaches you about conditional logic and decision trees. If the enemy's health is below a threshold, defend or use a healing ability. If the player has buffed their attack, the enemy might defend more. These conditional behaviors make enemies feel less mechanical and battles more dynamic. You do not need sophisticated AI for a good experience, just enough variety that player decisions matter.
+            </p>
+
+            <h3>The Battle Loop</h3>
+            <p>
+                With actions implemented, create the main battle loop that orchestrates turns until victory or defeat. Each iteration displays current state so players understand the situation. The player chooses and executes their action. The game checks if the enemy has been defeated; if so, the player wins and the loop ends. If the enemy survives, they take their turn. The game checks if the player has been defeated; if so, the player loses and the loop ends. Otherwise, the loop continues for another turn.
+            </p>
+
+            <p>
+                This structure is straightforward but effective. Displaying state at the start of each turn ensures players have current information when making decisions. Checking victory conditions after each action means the battle ends immediately when appropriate rather than continuing for unnecessary actions. Clear victory and defeat messages provide closure and reinforce what happened.
+            </p>
+
+            <h3>Victory and Defeat Conditions</h3>
+            <p>
+                The basic condition for victory is reducing the enemy's health to zero. The basic condition for defeat is the player's health reaching zero. These conditions are simple to check but think about edge cases. Can both characters reach zero health simultaneously? How should that be handled? You might declare it a draw, or give victory to whoever dealt the finishing blow first. Either works, but you need to decide and implement consistently.
+            </p>
+
+            <p>
+                Consider whether there should be other victory conditions. A turn limit creates urgency and prevents infinite battles if damage output is very low. A flee option lets players escape losing battles but might be considered a loss or might allow retrying with different strategy. These variations add depth but require additional implementation and testing.
+            </p>
+        </section>
+
+        <section>
+            <h2>Phase 3: Enhancements and Strategic Depth (20 minutes)</h2>
+            <p>
+                With core combat working, enhancements add strategic depth, variety, and replayability. Choose enhancements that interest you and teach concepts you want to explore. Different enhancements lead down different paths of increasing complexity.
+            </p>
+
+            <h3>Special Abilities</h3>
+            <p>
+                Special abilities give players powerful options that cannot be used every turn. A special attack might deal double damage but be usable only once per battle. A healing ability might restore health but have a cooldown of several turns. A buff ability might temporarily increase attack power. These abilities create strategic decisions: when is the right time to use a limited resource? Should you save your special attack for when the enemy is low, or use it early to gain advantage?
+            </p>
+
+            <p>
+                Implementing special abilities teaches you about tracking usage constraints. One-time abilities need a boolean flag indicating whether they have been used. Cooldown-based abilities need a counter that decrements each turn until reaching zero, at which point the ability becomes available again. Resource-based abilities need a resource pool (mana, energy, stamina) that depletes with use and regenerates over time. Different constraint systems create different gameplay dynamics.
+            </p>
+
+            <h3>Character Classes and Variety</h3>
+            <p>
+                Allow players to choose from multiple character classes with different stat distributions and abilities. A warrior might have high health and attack but no healing. A mage might have lower health but powerful special abilities. A rogue might have moderate stats but abilities that manipulate turn order or inflict status effects. Different classes create different playstyles and encourage replaying with new approaches.
+            </p>
+
+            <p>
+                Implementing character classes extends your character creation system. You might create template functions for each class that return appropriately initialized characters, or use a class selection system that modifies base stats. Different implementations have different extensibility tradeoffs. Think about how easy it would be to add a fourth class to your system.
+            </p>
+
+            <h3>Status Effects</h3>
+            <p>
+                Status effects modify character behavior temporarily. Poison deals damage over time. Stun prevents taking actions. Buffs increase stats for several turns. Debuffs decrease them. Status effects add tactical complexity: do you use an ability that deals damage now, or one that applies poison for sustained damage? Do you attack an enemy who is stunned, or set up for an even bigger next turn?
+            </p>
+
+            <p>
+                Implementing status effects requires tracking what effects are active, what they do, and when they expire. One approach stores a list of active effects with each character, where each effect has a type, a magnitude, and a remaining duration. Each turn, effects trigger their behavior (damage for poison, stat changes for buffs), then decrement duration, removing effects that expire. This system is flexible but requires careful testing to ensure effects apply correctly and clean up properly.
+            </p>
+
+            <h3>Item Systems</h3>
+            <p>
+                Items provide consumable benefits during battle. Healing potions restore health. Attack buffs temporarily increase damage. Defensive items reduce incoming damage. Item systems add resource management: players have limited items and must decide when to use them versus saving them for later emergencies. This creates interesting tension between using resources now to win this battle versus conserving them for tougher battles ahead.
+            </p>
+
+            <p>
+                Implementing an item system requires inventory management. A simple approach uses a dictionary mapping item names to quantities. Using an item reduces its quantity. Running out of an item removes it from available options. More complex systems might include item effects with varying durations, items that affect enemies rather than the player, or items that can only be used under certain conditions.
+            </p>
+
+            <h3>Multiple Battles and Progression</h3>
+            <p>
+                String multiple battles together where the player's health carries over between fights. This creates a survival challenge: conserve resources and health across multiple encounters. Defeat ends the run; victory means continuing to the next, tougher enemy. This gauntlet structure creates rising tension and makes resource management crucial. Healing becomes more valuable when health does not fully restore between battles.
+            </p>
+
+            <p>
+                You might add progression systems where players gain experience or level up between battles, permanently improving stats. This provides a sense of growth and makes later battles manageable despite tougher enemies. Implementing progression teaches you about persistent state across multiple game sessions and how to balance increasing power against increasing challenge.
+            </p>
+        </section>
+
+        <section>
+            <h2>Game Balance and Playtesting</h2>
+            <p>
+                Balance is crucial for creating satisfying gameplay. If the player is too powerful, battles become trivial. If enemies are too strong, battles become impossible and frustrating. Good balance creates challenge that feels fair and winnable through good decision-making. Achieving this balance requires testing, iteration, and willingness to adjust numbers based on how the game actually feels.
+            </p>
+
+            <p>
+                Start with rough estimates for stats: maybe the player has 100 HP and 15 attack, while a basic enemy has 50 HP and 10 attack. Play several battles. Do they feel too easy? Increase enemy stats. Too hard? Decrease them or increase player stats. Does one strategy dominate? Adjust costs or cooldowns to encourage variety. Balance is an iterative process of testing, identifying problems, making adjustments, and testing again.
+            </p>
+
+            <p>
+                As you add complexity, balance becomes more intricate. Multiple character classes need to feel equally viable. Different abilities should each have situations where they are the right choice. Status effects should be powerful enough to be worth using but not so strong they trivialize encounters. Finding this balance teaches you to think about systems holistically rather than in isolation. A small change to one ability can ripple through the entire combat system.
+            </p>
+        </section>
+
+        <section>
+            <h2>Testing and Debugging</h2>
+            <p>
+                RPG battle systems have many interacting pieces, making bugs potentially subtle. Test systematically to ensure everything works correctly. Play battles where the player wins, loses, and achieves any special conditions. Test every ability and item. Try unusual combinations of actions to see if anything breaks. This comprehensive testing reveals edge cases that casual play might miss.
+            </p>
+
+            <p>
+                When debugging, isolate which system is malfunctioning. If damage seems wrong, add print statements showing the calculation step by step. If status effects do not expire correctly, display active effects and their remaining durations each turn. If game state becomes inconsistent, verify that all code paths update state correctly. Systematic isolation helps you locate problems efficiently even in complex systems.
+            </p>
+
+            <h3>Common Issues</h3>
+            <p>
+                Health going negative causes display problems and can break victory detection if you check for exactly zero. Always enforce minimum health of zero after damage. Status effects that do not clean up properly can keep affecting characters after they should have expired. Ensure effects decrement duration and remove themselves appropriately. Player abilities that can be used after they should be unavailable indicate constraint tracking is not working; verify that usage flags update or cooldowns decrement each turn.
+            </p>
+        </section>
+
+        <section>
+            <h2>Reflection and Extension</h2>
+            <p>
+                After completing your battle system, reflect on what you learned about managing complex, interacting systems. This kind of systems thinking applies far beyond games to any program with multiple components that must work together coherently. Consider how you organized your code to handle this complexity. Did you use functions to separate concerns? Did you keep related data together? Did you make it easy to add new features without rewriting existing code?
+            </p>
+
+            <p>
+                Think about the design decisions you made and how they affected gameplay. Which abilities felt most satisfying to use? Which battles felt most balanced? What would you change if you were starting over? This critical reflection helps you develop design instincts that improve with each project.
+            </p>
+
+            <p>
+                Consider how you might extend this project further. Could you add an exploration system where players navigate a world and trigger battles at certain locations? Could you implement a save system so players can continue later? Could you create an equipment system where players find weapons and armor that modify stats? Each extension builds on your working foundation, teaching new concepts while reinforcing what you have learned.
+            </p>
+        </section>
+
+        <section class="callout">
+            <h3>Need Help?</h3>
+            <p>
+                If you encounter difficulties, review the <a href="../prompting-guide.html">Prompting Guide</a> for strategies on asking effective questions. RPG systems involve many moving parts, so breaking problems into smaller pieces helps. If something is not working, test each component individually before testing them together. Isolate the problem, then ask Claude for help with that specific piece rather than the entire system at once.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Claude Code Learning Activity | QQI Level 5/6 Computer Science</p>
+        <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
+    </footer>
+</body>
+</html>
