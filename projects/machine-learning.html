@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning Project - Claude Code Learning Activity</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="site-title">Claude Code Learning Activity</a>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../getting-started.html">Getting Started</a></li>
+                <li class="dropdown">
+                    <a href="#projects">Projects ▾</a>
+                    <div class="dropdown-content">
+                        <a href="tic-tac-toe.html">Tic-Tac-Toe</a>
+                        <a href="word-guessing.html">Word Guessing</a>
+                        <a href="rpg-battle.html">RPG Battle</a>
+                        <a href="image-processing.html">Image Processing</a>
+                        <a href="machine-learning.html">Machine Learning</a>
+                    </div>
+                </li>
+                <li><a href="../prompting-guide.html">Prompting Guide</a></li>
+                <li><a href="../for-teachers.html">For Teachers</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Project: Machine Learning Classification</h1>
+
+        <div class="intro">
+            <span class="difficulty advanced">Advanced</span>
+            <p><strong>Estimated Time:</strong> 70-80 minutes | <strong>Language:</strong> Python</p>
+        </div>
+
+        <section>
+            <h2>Project Overview</h2>
+            <p>
+                This project introduces you to machine learning through a classification problem: given data about entities, train a computer program to automatically categorize them. Classification is one of the most fundamental machine learning tasks, underlying applications from spam filtering to medical diagnosis to recommendation systems. You will work with real datasets, train models that learn patterns from examples, and evaluate how well those models generalize to new, unseen data.
+            </p>
+
+            <p>
+                Machine learning represents a fundamentally different programming paradigm than what you have encountered in other projects. Instead of writing explicit rules for how to solve a problem, you provide examples of inputs and correct outputs, and the learning algorithm automatically discovers patterns that map inputs to outputs. This approach works remarkably well for problems where writing explicit rules is difficult or impossible, but where examples are plentiful. Understanding both the power and limitations of this paradigm is essential for modern software development.
+            </p>
+
+            <p>
+                The starter code provides dataset loading and basic exploration using scikit-learn, Python's most popular machine learning library. You will build upon this foundation to implement a complete machine learning pipeline: splitting data into training and testing sets, training models, making predictions, and evaluating performance. The project emphasizes understanding what machine learning models do, when they work well, and how to assess whether they are truly learning meaningful patterns versus memorizing training data.
+            </p>
+        </section>
+
+        <section>
+            <h2>What You Will Learn</h2>
+            <p>
+                This project develops understanding of machine learning concepts that underpin modern AI systems. You will learn the fundamental distinction between training and testing data, which is central to all machine learning. Models learn from training data but must perform well on testing data they have never seen. This split allows you to assess whether a model has learned genuine patterns that generalize or merely memorized specific examples.
+            </p>
+
+            <p>
+                You will work with classification algorithms that take different approaches to learning patterns. Decision trees learn hierarchical rules by splitting data based on feature values. K-nearest neighbors classifies new examples based on similarity to known examples. Support vector machines find boundaries that optimally separate different classes. Understanding that multiple algorithms exist and that different algorithms have different strengths teaches you to think about machine learning as a diverse toolkit rather than a single technique.
+            </p>
+
+            <p>
+                The project emphasizes evaluation and critical thinking about model performance. Accuracy measures what fraction of predictions are correct, but it does not tell the whole story. A confusion matrix reveals which specific classes a model confuses. Precision and recall capture different aspects of performance for imbalanced problems. Learning to interpret these metrics and understand their implications develops your ability to assess machine learning systems critically rather than accepting accuracy numbers at face value.
+            </p>
+
+            <p>
+                You will encounter the fundamental challenges of machine learning: overfitting, where models memorize training data but fail to generalize; underfitting, where models fail to capture important patterns; and the bias-variance tradeoff that governs this balance. These concepts are not merely theoretical; you will see them manifested in how your models perform. This concrete experience with fundamental ML concepts provides intuition that abstractions alone cannot convey.
+            </p>
+        </section>
+
+        <section>
+            <h2>Getting the Starter Code</h2>
+            <p>
+                Before beginning, install the required libraries. Open a terminal and run <code>pip install scikit-learn pandas matplotlib</code>. Scikit-learn provides machine learning algorithms and datasets. Pandas handles data manipulation. Matplotlib enables visualization. These libraries are standard tools in the Python data science ecosystem and learning to use them prepares you for practical machine learning work.
+            </p>
+
+            <p>
+                Two versions of starter code are available. The beginner version provides dataset loading and exploration, allowing you to focus on understanding the machine learning pipeline from scratch. The advanced version includes basic training and evaluation, letting you focus on comparing models, implementing better evaluation strategies, and developing deeper understanding of what makes models work well.
+            </p>
+
+            <p>
+                Download the appropriate starter code and run it immediately. The program works with the Iris dataset, a classic machine learning dataset containing measurements of iris flowers from three species. The dataset is small enough to work with quickly but large enough to demonstrate real machine learning concepts. Seeing the data exploration helps you understand what machine learning models operate on: tables of numbers where rows are examples and columns are features.
+            </p>
+
+            <div style="display: flex; gap: 1rem; margin: 2rem 0;">
+                <a href="../starter-code/ml_beginner.py" download class="btn">Download Beginner Starter</a>
+                <a href="../starter-code/ml_advanced.py" download class="btn btn-secondary">Download Advanced Starter</a>
+            </div>
+
+            <div class="note">
+                <strong>First Steps:</strong> Install required libraries with <code>pip install scikit-learn pandas matplotlib</code>, then run <code>python ml_beginner.py</code> (or <code>ml_advanced.py</code>). The program displays dataset information, showing you the structure of data that machine learning models learn from.
+            </div>
+        </section>
+
+        <section>
+            <h2>Phase 1: Understanding the Problem (15 minutes)</h2>
+            <p>
+                Before training models, examine the dataset carefully to understand what problem you are solving. The Iris dataset contains measurements of sepal length, sepal width, petal length, and petal width for 150 iris flowers from three species. The task is classification: given measurements of a flower, predict its species. This is supervised learning because you have examples where the correct answer (species) is known, and the model learns from these examples.
+            </p>
+
+            <p>
+                Look at the data exploration output from the starter code. Notice that features are numerical measurements, and labels are integers representing species. Machine learning algorithms work with numbers, so categorical information like species names gets encoded as integers. Understanding this numerical representation is important for reasoning about what models can and cannot learn. They learn statistical patterns in numbers, not semantic understanding of what those numbers represent.
+            </p>
+
+            <h3>The Training-Testing Split</h3>
+            <p>
+                A fundamental principle in machine learning is that you must evaluate models on data they have not seen during training. If you train and test on the same data, the model might simply memorize the training examples without learning patterns that generalize. By holding out some data for testing, you can assess whether the model learned genuine patterns or just memorized specific examples. This split is so fundamental that it appears in virtually every machine learning project.
+            </p>
+
+            <p>
+                The typical approach uses most data (often 70-80%) for training, reserving the remainder for testing. More training data gives the model more examples to learn from. More testing data gives more reliable evaluation of performance. The exact split is a practical tradeoff, not a theoretically determined value. For the Iris dataset with 150 examples, an 80-20 split provides 120 training examples and 30 test examples, which is reasonable for this problem.
+            </p>
+
+            <h3>What Makes a Good Model?</h3>
+            <p>
+                Before implementing anything, think about what it means for a model to be good. Obviously, accuracy matters: how often does the model predict correctly? But perfect training accuracy might indicate memorization rather than learning. Good testing accuracy suggests the model learned generalizable patterns. The gap between training and testing accuracy reveals important information about whether the model is overfitting (memorizing) or appropriately learning patterns.
+            </p>
+
+            <p>
+                Consider also what kinds of mistakes matter. In some applications, all mistakes are equally bad. In others, certain types of errors are more serious than others. A medical diagnostic system has different considerations than a spam filter. While the Iris dataset is academic rather than applied, thinking about these considerations develops judgment about evaluation that applies to real problems.
+            </p>
+        </section>
+
+        <section>
+            <h2>Phase 2: Building the ML Pipeline (35 minutes)</h2>
+            <p>
+                Build your machine learning system incrementally, starting with the simplest possible pipeline and progressively adding sophistication. This approach lets you verify each component works before adding complexity that might introduce bugs or confusion.
+            </p>
+
+            <h3>Splitting the Data</h3>
+            <p>
+                Your first task is to split the data into training and testing sets. Scikit-learn provides <code>train_test_split</code>, which randomly divides data while maintaining the ability to reproduce the split using a random seed. Setting <code>random_state=42</code> (or any fixed number) ensures the same split occurs every time you run the program, making results reproducible. This reproducibility is important for debugging and for comparing different models fairly.
+            </p>
+
+            <p>
+                After splitting, verify the sizes are correct. If you requested an 80-20 split of 150 examples, you should have 120 training and 30 testing examples. Always verify data operations produced expected results rather than assuming they worked correctly. This habit of verification prevents subtle bugs that can invalidate your entire analysis.
+            </p>
+
+            <h3>Training Your First Model</h3>
+            <p>
+                With data split, you can train a model. Start with a decision tree classifier, which is relatively simple to understand conceptually. Decision trees learn by recursively splitting data based on feature values, creating a tree-like structure of decisions that leads to predictions. Training involves calling the <code>fit</code> method with training features and labels. The model automatically discovers which features to split on and at what values, learning patterns that separate the different species.
+            </p>
+
+            <p>
+                Training happens quickly for this small dataset, but larger datasets or more complex models can take substantial time. Understanding that training is a computational process that requires time and resources rather than an instant operation is important for practical machine learning work. During training, the algorithm explores different ways of organizing the decision tree to find structures that accurately classify training data.
+            </p>
+
+            <h3>Making Predictions</h3>
+            <p>
+                Once trained, the model can make predictions on new data using the <code>predict</code> method. Pass testing features (without labels), and the model returns predicted labels. Compare these predictions with actual labels to see how well the model performs. Look at specific examples where predictions match or differ from reality. Understanding individual predictions helps you develop intuition about what the model learned.
+            </p>
+
+            <p>
+                Notice that prediction is fast compared to training. The model has already learned patterns during training; prediction just applies those learned patterns to new examples. This asymmetry between training and prediction time is common in machine learning and has practical implications for how models are deployed and used.
+            </p>
+
+            <h3>Evaluating Performance</h3>
+            <p>
+                Accuracy is the simplest evaluation metric: what fraction of predictions are correct? Calculate it by comparing predictions with actual labels. A model that achieves 90% accuracy on test data correctly classifies 90% of test examples. But accuracy alone does not tell the whole story. If a dataset has imbalanced classes (many examples of one class, few of another), a model could achieve high accuracy by always predicting the majority class while completely failing on minority classes.
+            </p>
+
+            <p>
+                The confusion matrix provides more detailed information by showing which classes the model confuses. Rows represent actual labels; columns represent predictions. Diagonal entries show correct predictions; off-diagonal entries show specific types of mistakes. If the model frequently confuses species A with species B but rarely confuses either with species C, that pattern appears in the confusion matrix. This detailed view helps you understand what the model learned and where it struggles.
+            </p>
+
+            <h3>Understanding What Was Learned</h3>
+            <p>
+                Machine learning models are often treated as black boxes, but you can gain insight into what they learned. For decision trees, you can examine feature importance, which shows how useful each feature was for classification. If petal length has high importance while sepal width has low importance, the model found petal length more informative for distinguishing species. This information connects back to the original problem: which flower measurements are most characteristic of different species?
+            </p>
+
+            <p>
+                Understanding what models learn helps you assess whether they are learning meaningful patterns or spurious correlations. If a medical diagnostic model achieves high accuracy but relies heavily on features that should not be medically relevant, something is wrong even if accuracy is good. Interrogating what models learn is part of responsible machine learning practice.
+            </p>
+        </section>
+
+        <section>
+            <h2>Phase 3: Comparison and Deep Understanding (20 minutes)</h2>
+            <p>
+                With a working pipeline, you can explore fundamental machine learning concepts through comparison and experimentation. Understanding comes not just from making one model work but from seeing how different approaches compare and under what conditions models succeed or fail.
+            </p>
+
+            <h3>Comparing Different Algorithms</h3>
+            <p>
+                Train multiple classifiers on the same data to see how different algorithms compare. Besides decision trees, try K-nearest neighbors (which classifies based on similar examples) and random forests (which combine multiple decision trees). Each algorithm makes different assumptions about patterns in data and has different strengths and weaknesses. Seeing that different algorithms achieve different performance on the same data reveals that there is no universally best algorithm; the choice depends on the problem.
+            </p>
+
+            <p>
+                When comparing algorithms, ensure fair comparison by using the same train-test split and evaluating with the same metrics. Document what you observe: which algorithm performed best? Was one much slower to train? Did any algorithm make notably different types of mistakes? These observations develop your intuition about when to try different approaches.
+            </p>
+
+            <h3>Cross-Validation for Robust Evaluation</h3>
+            <p>
+                A single train-test split might not fully represent model performance. You might happen to choose an unusually easy or difficult test set. Cross-validation addresses this by repeatedly splitting data in different ways and averaging results. Five-fold cross-validation, for example, divides data into five parts, using four for training and one for testing, repeating this five times with different test sets. The average performance across folds provides a more robust estimate than a single split.
+            </p>
+
+            <p>
+                Implementing cross-validation teaches you about the tradeoff between computational cost and evaluation reliability. More folds give more reliable estimates but require more training runs. For this project, five-fold cross-validation is standard. Understanding this technique prepares you for serious machine learning work where robust evaluation is essential for drawing valid conclusions about model performance.
+            </p>
+
+            <h3>Visualizing Decision Boundaries</h3>
+            <p>
+                For deeper understanding, visualize how models partition feature space. By using two features at a time, you can create 2D plots showing decision boundaries: regions where the model predicts different classes. This visualization reveals whether boundaries are simple (linear) or complex (curved, fragmented), whether different classes are well-separated or overlapping, and whether the model's boundaries seem reasonable given the data distribution.
+            </p>
+
+            <p>
+                Creating these visualizations requires generating a grid of points covering feature space, predicting the class for each point, and coloring regions by predicted class. Actual training data points can be overlaid to show how well predictions match reality. This visual understanding complements numerical metrics, providing intuition about what models are doing that numbers alone cannot convey.
+            </p>
+
+            <h3>Exploring Other Datasets</h3>
+            <p>
+                Apply your pipeline to different datasets to see how well your approach generalizes. Scikit-learn includes several built-in datasets with different characteristics. The wine dataset classifies wines by chemical analysis. The breast cancer dataset predicts cancer diagnoses from cell measurements. Each dataset has different numbers of features, different class balances, and different difficulties. Seeing that models that work well on one dataset might struggle on another teaches you that machine learning performance is problem-dependent, not algorithm-dependent alone.
+            </p>
+        </section>
+
+        <section>
+            <h2>Understanding Machine Learning Concepts</h2>
+
+            <h3>Overfitting and Underfitting</h3>
+            <p>
+                Overfitting occurs when a model learns training data too well, memorizing specific examples including noise rather than learning generalizable patterns. An overfit model achieves high training accuracy but poor testing accuracy because it fails to generalize. Underfitting is the opposite: the model is too simple to capture important patterns, achieving poor accuracy on both training and testing data. The goal is to find the sweet spot between these extremes where the model captures genuine patterns without memorizing noise.
+            </p>
+
+            <p>
+                You can observe overfitting by comparing training and testing performance. A large gap suggests overfitting. You can experiment with model complexity: simpler models (shallow decision trees, fewer neighbors in KNN) tend to underfit; complex models (deep decision trees, many neighbors) tend to overfit. Finding appropriate complexity is part of the art of machine learning.
+            </p>
+
+            <h3>The Role of Features</h3>
+            <p>
+                Machine learning models only see the features you provide. If important information is not represented in features, the model cannot learn to use it. If irrelevant features are included, they may add noise that degrades performance. Feature engineering—creating informative features from raw data—is often more important for performance than choice of algorithm. Understanding this places machine learning in proper perspective: it is powerful but not magic. Models learn from data as represented by features, nothing more.
+            </p>
+
+            <h3>Why Machine Learning Works</h3>
+            <p>
+                Machine learning succeeds when problems have patterns that are consistent enough to learn but complex enough that writing explicit rules is difficult. Classifying iris species works because each species has characteristic measurements that distinguish it. The patterns are subtle (humans cannot perfectly classify from measurements) but consistent. Problems without consistent patterns, or where patterns change over time, are fundamentally unsuitable for machine learning regardless of algorithm sophistication.
+            </p>
+        </section>
+
+        <section>
+            <h2>Ethical and Practical Considerations</h2>
+            <p>
+                Machine learning systems increasingly make decisions that affect people's lives: determining creditworthiness, screening job applications, predicting criminal recidivism, diagnosing diseases. These applications raise important ethical questions. Models learn from historical data, which may reflect historical biases. A model trained on biased data learns those biases. High accuracy does not guarantee fairness; a model might achieve high overall accuracy while performing poorly on minority groups.
+            </p>
+
+            <p>
+                Understanding machine learning technically is necessary but not sufficient for responsible deployment. You must also consider what data the model was trained on, whether that data reflects the population it will be applied to, what happens when the model is wrong, and whether accuracy metrics capture what actually matters. These considerations go beyond technical implementation to questions of values, fairness, and responsibility. Engaging with them, even in an academic project, prepares you to think critically about machine learning's role in society.
+            </p>
+        </section>
+
+        <section>
+            <h2>Testing and Debugging ML Systems</h2>
+            <p>
+                Debugging machine learning systems differs from debugging traditional programs. Traditional bugs cause crashes or obviously wrong output. Machine learning bugs often manifest as suboptimal performance: the model works but does not work well. Debugging requires systematic investigation of why performance is poor. Is the problem insufficient training data? Poor feature choice? Inappropriate algorithm? Data leakage between training and testing? Each possibility requires different investigative approaches.
+            </p>
+
+            <p>
+                Always start by verifying your data pipeline. Print shapes and statistics of training and testing sets. Verify labels are distributed as expected. Check that features are scaled appropriately if the algorithm requires it. Many machine learning problems arise from data handling errors rather than algorithmic issues. Catching these early prevents wasting time tuning algorithms when the real problem is corrupted data.
+            </p>
+        </section>
+
+        <section>
+            <h2>Reflection and Extension</h2>
+            <p>
+                After completing this project, reflect on what you learned about machine learning as a problem-solving approach. Unlike previous projects where you wrote explicit logic, here you provided examples and let algorithms discover patterns. This paradigm shift has profound implications for what kinds of problems computers can solve. Tasks that would be impossibly complex to program explicitly (recognizing objects in images, understanding speech) become tractable through machine learning.
+            </p>
+
+            <p>
+                Consider how you might extend this project. Could you collect your own dataset and apply machine learning to it? Could you explore more advanced algorithms like neural networks? Could you tackle different problem types like regression (predicting continuous values) or clustering (finding groups without labels)? Each extension builds on your foundation while introducing new concepts and challenges.
+            </p>
+
+            <p>
+                Think about the limitations of what you have learned. This project covered supervised classification on small, clean, labeled datasets. Real machine learning often involves huge datasets, noisy data, missing labels, and complex preprocessing. The principles you learned apply, but practical application requires additional skills and tools. Understanding what you have learned and what remains to learn helps you continue developing machine learning expertise beyond this introduction.
+            </p>
+        </section>
+
+        <section>
+            <h2>Resources for Deeper Learning</h2>
+            <p>
+                Machine learning is a vast field requiring substantial mathematics and statistics for deep understanding. Several excellent educational resources provide different entry points based on your background and interests.
+            </p>
+
+            <p>
+                <strong>StatQuest with Josh Starmer</strong> provides exceptionally clear video explanations of statistical and machine learning concepts with minimal mathematical prerequisites. Available at <a href="https://www.youtube.com/c/joshstarmer">youtube.com/c/joshstarmer</a>.
+            </p>
+
+            <p>
+                <strong>3Blue1Brown</strong> offers visual explanations of neural networks and deep learning that make complex mathematics intuitive through animation. Find these at <a href="https://www.youtube.com/c/3blue1brown">youtube.com/c/3blue1brown</a>.
+            </p>
+
+            <p>
+                <strong>Scikit-learn documentation</strong> at <a href="https://scikit-learn.org/stable/user_guide.html">scikit-learn.org</a> provides comprehensive guides to machine learning concepts and algorithms with practical code examples.
+            </p>
+
+            <p>
+                <strong>Andrew Ng's Machine Learning course</strong> on Coursera provides systematic introduction to machine learning theory and practice, though it requires comfort with linear algebra and calculus.
+            </p>
+        </section>
+
+        <section class="callout">
+            <h3>Need Help?</h3>
+            <p>
+                If you encounter difficulties, review the <a href="../prompting-guide.html">Prompting Guide</a> for strategies on asking effective questions. When debugging machine learning code, be specific about what behavior you observe (accuracy values, error messages, unexpected output) rather than vague descriptions. Machine learning debugging often requires systematic elimination of possibilities, so clear problem descriptions help focus investigation.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Claude Code Learning Activity | QQI Level 5/6 Computer Science</p>
+        <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
+    </footer>
+</body>
+</html>

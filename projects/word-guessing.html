@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Guessing Project - Claude Code Learning Activity</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="site-title">Claude Code Learning Activity</a>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../getting-started.html">Getting Started</a></li>
+                <li class="dropdown">
+                    <a href="#projects">Projects ▾</a>
+                    <div class="dropdown-content">
+                        <a href="tic-tac-toe.html">Tic-Tac-Toe</a>
+                        <a href="word-guessing.html">Word Guessing</a>
+                        <a href="rpg-battle.html">RPG Battle</a>
+                        <a href="image-processing.html">Image Processing</a>
+                        <a href="machine-learning.html">Machine Learning</a>
+                    </div>
+                </li>
+                <li><a href="../prompting-guide.html">Prompting Guide</a></li>
+                <li><a href="../for-teachers.html">For Teachers</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Project: Word Guessing Game</h1>
+
+        <div class="intro">
+            <span class="difficulty intermediate">Intermediate</span>
+            <p><strong>Estimated Time:</strong> 60-70 minutes | <strong>Language:</strong> Python</p>
+        </div>
+
+        <section>
+            <h2>Project Overview</h2>
+            <p>
+                This project guides you through building a word guessing game, commonly known as Hangman, where players attempt to guess a hidden word by suggesting letters one at a time. The game provides immediate feedback about whether each guess is correct and tracks progress toward winning or losing. This project is particularly effective for learning string manipulation, set operations for tracking guesses, and game state management across multiple turns.
+            </p>
+
+            <p>
+                Unlike tic-tac-toe where the board state is visually obvious, word guessing requires you to think carefully about what information needs to be tracked and displayed. You must manage the secret word, the set of letters already guessed, the number of wrong guesses remaining, and the current revealed state of the word. This complexity makes the project an excellent step up from simpler games while still remaining accessible to intermediate programmers.
+            </p>
+
+            <p>
+                The starter code provides word selection and basic display functionality, giving you immediate visual feedback when you run the program. You will incrementally add player input, guess tracking, win and lose conditions, and visual elements like ASCII art. The project offers substantial creative freedom through customizable word lists, difficulty levels, hint systems, and visual presentation styles.
+            </p>
+        </section>
+
+        <section>
+            <h2>What You Will Learn</h2>
+            <p>
+                Through this project, you will develop competency with several important programming concepts. String manipulation is central to this game, as you constantly compare guessed letters against the secret word and build display strings that reveal only certain letters. You will work extensively with sets, a data structure perfect for tracking unique letters that have been guessed, learning how sets differ from lists and when each is appropriate.
+            </p>
+
+            <p>
+                The project requires careful state management. Multiple pieces of information must be tracked and updated consistently: which letters have been guessed, how many wrong guesses remain, whether the player has won or lost. Managing this state teaches you to think systematically about what information your program needs to maintain and how different pieces of state interact. A wrong guess affects both the display and the game-over condition. A correct guess affects the revealed word state and potentially triggers a win condition.
+            </p>
+
+            <p>
+                Input validation becomes more important in this project than in simpler games. Players might enter multiple characters, numbers, symbols, or letters they have already guessed. Your program needs to handle all these cases gracefully, explaining what went wrong and giving the player another chance. This defensive programming approach is crucial for building robust software that behaves predictably even when users do unexpected things.
+            </p>
+
+            <p>
+                The creative aspects of this project teach valuable lessons about user experience. How do you make the game engaging? Clear feedback after each guess helps players understand what is happening. Visual elements like ASCII art make abstract game state concrete and memorable. Appropriate difficulty balancing keeps the game challenging but not frustrating. These considerations go beyond just making code work to thinking about how people interact with your software.
+            </p>
+        </section>
+
+        <section>
+            <h2>Getting the Starter Code</h2>
+            <p>
+                Two versions of starter code are available to match your experience level. The beginner version provides word selection and display functions, allowing you to see how words are hidden and revealed. The advanced version additionally includes input handling and basic guess processing, letting you focus more on game logic and enhancements.
+            </p>
+
+            <p>
+                Download the appropriate starter code to your project directory and run it immediately. Understanding what functionality already exists helps you plan what you need to add. Both starter versions demonstrate the core display mechanism, showing you how the game will reveal letters as players guess correctly.
+            </p>
+
+            <div style="display: flex; gap: 1rem; margin: 2rem 0;">
+                <a href="../starter-code/wordguess_beginner.py" download class="btn">Download Beginner Starter</a>
+                <a href="../starter-code/wordguess_advanced.py" download class="btn btn-secondary">Download Advanced Starter</a>
+            </div>
+
+            <div class="note">
+                <strong>First Step:</strong> After downloading, navigate to your project directory and run <code>python wordguess_beginner.py</code> (or <code>wordguess_advanced.py</code>). The demonstration shows you the word display mechanism in action, helping you understand the foundation you are building upon.
+            </div>
+        </section>
+
+        <section>
+            <h2>Phase 1: Planning Your Build (15 minutes)</h2>
+            <p>
+                Before adding features, examine the starter code carefully and plan your approach. The starter code shows you how words are selected and displayed, but the game logic is your responsibility. Think through what needs to happen on each turn: the player guesses a letter, you check if it is in the word, you update the display, you check if the player has won or lost, and you either continue or end the game.
+            </p>
+
+            <p>
+                Consider what data structures are most appropriate for different pieces of information. The secret word itself is a string that never changes during a game. Guessed letters could be tracked in a list, but a set is more appropriate because you only care whether a letter has been guessed, not how many times or in what order. Wrong guesses could be counted with a simple integer. Thinking through these choices before coding prevents restructuring later.
+            </p>
+
+            <h3>Understanding the Display Mechanism</h3>
+            <p>
+                The starter code includes a display function that takes the secret word and the set of guessed letters, then builds a display string showing revealed letters and underscores for hidden ones. This works by iterating through each letter in the secret word and checking if it exists in the guessed letters set. Understanding this mechanism is crucial because it is the core of how your game shows progress to the player.
+            </p>
+
+            <p>
+                Consider how win and lose conditions work in this game. A player wins when every letter in the secret word has been guessed. You could check this by comparing the set of letters in the word with the set of guessed letters, or by checking if the display string contains no underscores. Different approaches have different advantages. A player loses when they make too many wrong guesses, which is straightforward to check with a counter and a maximum value.
+            </p>
+
+            <h3>Defining Your MVP</h3>
+            <p>
+                The minimum viable product for this game includes word selection (already provided), letting the player guess letters one at a time, revealing correct guesses in the display, counting wrong guesses, detecting win and lose conditions, and ending the game appropriately. Everything else is enhancement. This focused scope ensures you can complete a working game in the allotted time while leaving room for creativity in the enhancement phase.
+            </p>
+        </section>
+
+        <section>
+            <h2>Phase 2: Building the Core Game (35 minutes)</h2>
+            <p>
+                Build your game incrementally, testing each addition before moving forward. The iterative approach is even more important for this project than for simpler ones because the state management is more complex. If multiple features are broken, isolating the problem becomes difficult. Testing after each small addition keeps debugging manageable.
+            </p>
+
+            <h3>Getting and Processing Guesses</h3>
+            <p>
+                Your first task is to let the player guess a letter and process that guess. You need a function that prompts for input, validates that it is a single letter, and returns it in a consistent format (uppercase is conventional). The validation is important: what happens if the player enters multiple characters? What if they enter a number or symbol? Your function should explain the problem and ask again rather than crashing or behaving strangely.
+            </p>
+
+            <p>
+                Once you have a valid letter, process it. Is it in the secret word? If yes, it will automatically appear in the next display because your display function checks against all guessed letters. If no, you need to increment your wrong guess counter. This processing logic is straightforward, but you need to ensure the guessed letter is added to your tracking set regardless of whether it was correct. Otherwise players could guess the same wrong letter repeatedly.
+            </p>
+
+            <h3>Tracking Game State</h3>
+            <p>
+                As the game progresses, you maintain several pieces of state. The secret word remains constant. The set of guessed letters grows with each turn. The wrong guess counter increases when letters are not in the word. Later you may add more state like which ASCII art stage to display or what hints have been used. Keeping this state organized and ensuring all parts of your program access the same information prevents bugs where different functions have inconsistent views of the game state.
+            </p>
+
+            <p>
+                Consider where these state variables should live. In a simple program, they might be variables in your main function that you pass to other functions as needed. This keeps state centralized and makes it clear what information each function requires. As programs grow more complex, you might use different organizational strategies, but for this project, keeping state in main and passing it to functions works well.
+            </p>
+
+            <h3>Win and Lose Detection</h3>
+            <p>
+                Detecting a win requires checking whether all letters in the secret word have been guessed. One approach is to convert the secret word to a set of unique letters and check if it is a subset of the guessed letters. This works elegantly for most words but has an edge case: what if the word contains repeated letters? Converting to a set handles this automatically since sets contain only unique elements. Ask Claude about different approaches and their tradeoffs to deepen your understanding.
+            </p>
+
+            <p>
+                Detecting a loss is simpler: has the wrong guess counter reached the maximum allowed? You define this maximum based on desired difficulty. Six wrong guesses is traditional because it corresponds to six stages of a hangman drawing, but you can choose any number. Lower numbers make the game harder, higher numbers make it easier.
+            </p>
+
+            <h3>The Game Loop</h3>
+            <p>
+                With input, state tracking, and win/lose detection in place, you can create the full game loop. This loop continues until the player wins or loses. Each iteration displays the current state, gets a guess, processes it, updates state, and checks conditions. When a condition is met, the loop ends and an appropriate message appears.
+            </p>
+
+            <p>
+                Structuring this loop clearly makes your program easy to understand and modify. A common pattern is a while loop that continues until a win or lose condition becomes true. Inside the loop, you handle one turn completely before checking conditions and potentially looping again. This clear structure makes it obvious what happens each turn and when the game ends.
+            </p>
+        </section>
+
+        <section>
+            <h2>Phase 3: Enhancements (20 minutes)</h2>
+            <p>
+                With core functionality working, enhancements make your game more engaging and polished. Choose enhancements that interest you rather than trying to implement everything. Different enhancements teach different lessons, so select ones that help you learn what you find most valuable.
+            </p>
+
+            <h3>Visual Feedback with ASCII Art</h3>
+            <p>
+                Traditional hangman games show a drawing that progressively reveals with each wrong guess. You can implement this with ASCII art: text characters arranged to form pictures. Create a list of strings, where each string represents one stage of the drawing. As wrong guesses increase, display the corresponding stage. This visual feedback makes the consequences of wrong guesses immediate and memorable.
+            </p>
+
+            <p>
+                ASCII art can be simple or elaborate depending on your preferences. A very simple version might just display differently formatted text for each stage. A more elaborate version creates detailed drawings. Search online for "ASCII art hangman" to find examples you can adapt. Creating your own art teaches you about multiline strings and how to format text for visual effect.
+            </p>
+
+            <h3>Category Systems</h3>
+            <p>
+                Instead of one fixed word list, organize words into categories: animals, food, technology, countries, etc. Let the player choose a category before the game starts. This adds variety and lets players select topics they know well or want to challenge themselves with. Implementing categories teaches you about nested data structures: a dictionary where keys are category names and values are lists of words.
+            </p>
+
+            <p>
+                You could extend this further with themed ASCII art that matches the category, different difficulty levels within categories, or displaying the category as a hint to help the player. These variations show how a simple feature like category selection can branch into multiple related enhancements.
+            </p>
+
+            <h3>Hint Systems</h3>
+            <p>
+                Give players the option to request hints at the cost of revealing one random unguessed letter or reducing their maximum wrong guesses. Implementing hints requires generating random choices from available letters and managing the cost mechanic. This teaches you about tradeoff systems in game design: players gain an advantage but pay a price, creating interesting strategic decisions.
+            </p>
+
+            <p>
+                Different hint systems create different dynamics. Free hints make the game easier without interesting choices. Hints that cost a wrong guess create tension: is it worth using a hint now or should you try another guess first? Hints that reveal information gradually teach about progressive disclosure. Experiment with different approaches to understand how mechanics affect player experience.
+            </p>
+
+            <h3>Difficulty Levels</h3>
+            <p>
+                Offer multiple difficulty settings that change the maximum wrong guesses allowed, the word list used, or other parameters. Easy mode might allow eight wrong guesses and use shorter words. Hard mode might allow only four wrong guesses and use longer, more obscure words. Medium mode falls somewhere between. This enhancement teaches you about configurable systems where parameters can be adjusted to create different experiences from the same code.
+            </p>
+
+            <p>
+                Implementing difficulty well requires thinking about what makes the game harder or easier. Longer words are not always harder if they contain common letters. Obscure words are challenging regardless of length. The number of allowed guesses dramatically affects difficulty. Consider these factors when designing your difficulty system, and test each level to ensure it provides an appropriate challenge.
+            </p>
+
+            <h3>Score and Statistics</h3>
+            <p>
+                Track statistics across multiple games: wins, losses, average wrong guesses when winning, longest winning streak, etc. Display these statistics between games or when the player quits. This persistent state across games teaches you about data that needs to survive beyond single game sessions and how to present accumulated information meaningfully.
+            </p>
+
+            <p>
+                You might even save statistics to a file so they persist across program runs. This introduces file I/O concepts: writing data to a file when the program ends and reading it back when it starts. Implementing this teaches you about data persistence and serialization, valuable concepts that apply far beyond games.
+            </p>
+
+            <h3>Two-Player Mode</h3>
+            <p>
+                Let one player enter a secret word for another player to guess. This requires clearing the screen after the word is entered so the guesser cannot see it, or at least printing enough blank lines to push the word off screen. This variation creates social interaction around your game and teaches you about different input modes: sometimes the program provides the word, sometimes a player does.
+            </p>
+        </section>
+
+        <section>
+            <h2>Technical Considerations</h2>
+
+            <h3>String Manipulation Techniques</h3>
+            <p>
+                This project requires various string operations. Checking if a letter is in a word uses the <code>in</code> operator. Building the display string might use string concatenation or join operations. Converting to uppercase ensures case-insensitive matching. Understanding these different approaches and when each is appropriate deepens your Python knowledge. Ask Claude to explain alternatives and their performance characteristics if you are curious.
+            </p>
+
+            <h3>Set Operations</h3>
+            <p>
+                Sets are ideal for tracking guessed letters because they automatically handle uniqueness and provide fast membership testing. Understanding set operations like subset testing, intersection, and difference opens up elegant solutions to common problems. For example, checking which letters remain unguessed can be done with set subtraction: the set of all alphabet letters minus the set of guessed letters.
+            </p>
+
+            <h3>Input Validation Strategies</h3>
+            <p>
+                Robust input validation requires anticipating what could go wrong. Players might enter nothing (just press Enter), multiple characters, numbers, symbols, whitespace, or already-guessed letters. Each case needs handling. A well-structured validation function checks conditions sequentially, providing specific feedback for each problem rather than a generic "invalid input" message. This specificity helps players understand what went wrong and what they should do instead.
+            </p>
+        </section>
+
+        <section>
+            <h2>Testing and Debugging</h2>
+            <p>
+                Test your word guessing game systematically to ensure all paths work correctly. Play games you win by guessing correctly. Play games you lose by making too many wrong guesses. Try guessing the same letter twice to verify duplicate handling. Enter invalid inputs of various types to test validation. This comprehensive testing reveals edge cases you might not have considered during development.
+            </p>
+
+            <p>
+                When debugging, pay attention to whether issues arise from logic errors (checking the wrong condition), state management errors (updating the wrong variable or failing to update one), or display errors (calculating correctly but showing wrong information). Identifying which category a bug falls into helps you locate the problem quickly. Add print statements to inspect variable values at key points if the problem is not obvious.
+            </p>
+
+            <h3>Common Issues</h3>
+            <p>
+                Case sensitivity causes problems if you sometimes compare uppercase and sometimes lowercase letters. Convert all letters to the same case (uppercase is conventional) as soon as you receive input. Display string issues often arise from off-by-one errors or incorrect spacing. Carefully trace through your display logic with a specific example on paper if the output looks wrong. Win detection fails if you forget that guessed letters include both correct and incorrect guesses, so you need to filter or use a different approach. Lose detection is usually straightforward but ensure you are comparing against the right maximum value.
+            </p>
+        </section>
+
+        <section>
+            <h2>Reflection and Extension</h2>
+            <p>
+                After completing your word guessing game, reflect on what you learned about state management and string manipulation. These concepts transfer to many other programming contexts. State management is fundamental to almost any program that does more than simple calculations. String manipulation is essential for any text-based interaction.
+            </p>
+
+            <p>
+                Consider how you might extend this project further. Could you load words from an external file instead of hardcoding them? Could you add a graphical interface using a library like tkinter? Could you create a networked version where players compete against each other online? These extensions would teach you about file I/O, GUI programming, and networking respectively. Your working word guessing game provides a foundation you could build on in multiple directions.
+            </p>
+
+            <p>
+                Compare your implementation with a partner's if possible. Different programmers often solve the same problem in different ways, and examining alternatives teaches you to think flexibly about code structure. Your win detection might use subset operations while theirs uses a loop. Your display building might use join while theirs uses concatenation. Both can work correctly, and understanding multiple approaches makes you a more versatile programmer.
+            </p>
+        </section>
+
+        <section>
+            <h2>Resources and Further Learning</h2>
+            <p>
+                To deepen your understanding of string manipulation and data structures used in this project, several educational resources provide clear explanations with strong pedagogical foundations.
+            </p>
+
+            <p>
+                <strong>Python String Methods Documentation</strong> at <a href="https://docs.python.org/3/library/stdtypes.html#string-methods">docs.python.org</a> provides comprehensive reference for string operations central to this project.
+            </p>
+
+            <p>
+                <strong>Real Python - Python Sets Tutorial</strong> offers detailed explanation of set operations and when to use sets versus lists. Available at <a href="https://realpython.com/python-sets/">realpython.com/python-sets</a>.
+            </p>
+
+            <p>
+                <strong>Al Sweigart's "Automate the Boring Stuff with Python"</strong> includes accessible chapters on string manipulation and data structures. Available free online at <a href="https://automatetheboringstuff.com/">automatetheboringstuff.com</a>.
+            </p>
+        </section>
+
+        <section class="callout">
+            <h3>Need Help?</h3>
+            <p>
+                If you encounter difficulties, review the <a href="../prompting-guide.html">Prompting Guide</a> for strategies on asking effective questions. Word guessing games have more moving parts than simpler projects, so bugs can be trickier to isolate. Focus on testing each component individually before putting them together. If a complex interaction is not working, simplify until you find what does work, then build back up carefully.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Claude Code Learning Activity | QQI Level 5/6 Computer Science</p>
+        <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
+    </footer>
+</body>
+</html>

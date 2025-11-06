@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompting Guide - Claude Code Learning Activity</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="site-title">Claude Code Learning Activity</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li class="dropdown">
+                    <a href="#projects">Projects ▾</a>
+                    <div class="dropdown-content">
+                        <a href="projects/tic-tac-toe.html">Tic-Tac-Toe</a>
+                        <a href="projects/word-guessing.html">Word Guessing</a>
+                        <a href="projects/rpg-battle.html">RPG Battle</a>
+                        <a href="projects/image-processing.html">Image Processing</a>
+                        <a href="projects/machine-learning.html">Machine Learning</a>
+                    </div>
+                </li>
+                <li><a href="prompting-guide.html">Prompting Guide</a></li>
+                <li><a href="for-teachers.html">For Teachers</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Understanding and Prompting Claude Code Effectively</h1>
+
+        <div class="intro">
+            This guide goes beyond simple tips and tricks to help you understand how Claude Code actually works at a fundamental level. By understanding the underlying architecture and principles, you can develop intuitions about what makes prompts effective rather than memorizing a list of rules.
+        </div>
+
+        <section>
+            <h2>How Large Language Models Work</h2>
+            <p>
+                Claude Code is powered by a large language model (LLM), which is a type of artificial intelligence trained on vast amounts of text data. To prompt effectively, you need to understand the basic architecture and operation of these models, as their design fundamentally shapes how they respond to your requests.
+            </p>
+
+            <p>
+                At their core, language models are probability engines. When you type a prompt, the model processes your text and generates a response by predicting the most likely next tokens (words or parts of words) given everything it has seen so far. This is similar to your phone's autocomplete feature, but operating at a much more sophisticated level. The model does not "know" facts the way you know your address. Instead, it has learned statistical patterns from training data that allow it to generate text that follows similar patterns.
+            </p>
+
+            <p>
+                This probabilistic nature has important implications. The model does not have access to current information beyond its training data cutoff. It cannot browse the internet or access external databases during its response (though Claude Code can run commands and read files on your computer). It does not have memory of previous conversations once you end a session. Each new session starts completely fresh, even though your files persist. Understanding these limitations helps you provide the right context in your prompts.
+            </p>
+
+            <h3>The Context Window: Your Working Memory</h3>
+            <p>
+                Every large language model has a context window, which is the amount of text it can consider at once when generating responses. You can think of this like working memory. Just as you can hold only a limited amount of information in your mind while solving a problem, the model can only see a finite amount of text when responding to your prompts.
+            </p>
+
+            <p>
+                The context window includes everything in your current session: all previous messages you have sent, all responses Claude has generated, and the contents of any files Claude has read. When this window fills up, the model cannot access earlier parts of the conversation. This is why it is important to be explicit about what you are referring to, even if you discussed it earlier. If you say "modify that function" without specifying which function, and the original function definition was many messages ago, Claude may not have it in context anymore.
+            </p>
+
+            <p>
+                This architectural constraint explains why iteration works better than requesting everything at once. When you build incrementally, the most relevant information (your most recent code) stays in the context window. When you try to build a complex system all at once, important details get pushed out of context, leading to inconsistencies or errors.
+            </p>
+
+            <h3>Token Prediction and Specificity</h3>
+            <p>
+                The model generates responses token by token, where each token is a word or part of a word. At each step, it predicts the most probable next token based on patterns it learned during training. This is why specific prompts work better than vague ones. When you say "create a game," the model has to decide among thousands of possible next tokens with relatively similar probabilities. When you say "create a two-player tic-tac-toe game in Python that displays a 3x3 grid," you narrow the probability space dramatically, leading to more predictable and useful responses.
+            </p>
+
+            <p>
+                Specificity also helps the model maintain consistency. If you start building a project using lists to represent a game board and later ask to "add a feature," the model might continue using lists. But if the list-based approach was many prompts ago and has fallen out of context, the model might generate code using a different structure. Being specific about "add a function to check if the list-based board has a winner" keeps Claude aligned with your existing code structure.
+            </p>
+        </section>
+
+        <section>
+            <h2>Why Iteration Works: Building Context Gradually</h2>
+            <p>
+                Professional software development is iterative by nature. You build a small piece, test it, understand it, then build the next piece. This approach is not just good practice; it aligns with how language models work most effectively. When you build incrementally with Claude Code, each step adds to the context in a manageable way.
+            </p>
+
+            <p>
+                Consider two approaches to building a tic-tac-toe game. In the first approach, you ask Claude to "build a complete tic-tac-toe game with two players, win detection, input validation, and a play-again feature." Claude generates several hundred lines of code. You run it, and something does not work quite right. Now you need to understand all that code to figure out what went wrong. The sheer amount of generated code may itself exceed what fits comfortably in the context window for further modifications.
+            </p>
+
+            <p>
+                In the second approach, you ask Claude to "create a function that displays a 3x3 tic-tac-toe board using a list of nine elements." Claude generates perhaps twenty lines of code. You run it, see the board display, and understand how it works. Then you ask to "add a function that lets a player place an X in a position they choose." Another small addition, which you test and understand. You continue this way, building and verifying each piece before adding the next.
+            </p>
+
+            <p>
+                The second approach keeps your working code in context, allows you to verify correctness at each step, and builds your understanding gradually. When something goes wrong, you know it must be in the code you just added, not buried somewhere in hundreds of lines generated all at once. This iterative approach respects both the cognitive limitations of human learning and the architectural constraints of the AI model.
+            </p>
+        </section>
+
+        <section>
+            <h2>The Role of Testing in the Feedback Loop</h2>
+            <p>
+                Testing is not merely about finding bugs; it is about creating a feedback loop that informs both you and the model about what is working. When you test code and then report results back to Claude, you are providing new information that the model can use to refine its understanding of what you are trying to build.
+            </p>
+
+            <p>
+                Language models cannot run code themselves during generation. They can predict what code should do based on patterns in their training data, but they cannot verify this by execution. When you test code and report back "when I enter position 5, the board does not update," you are giving Claude concrete information it can use to correct the code. This is much more effective than just saying "the code does not work."
+            </p>
+
+            <p>
+                The test-report-refine cycle is powerful because it grounds the model's probability-based predictions in empirical reality. The model might generate code that looks syntactically correct and follows common patterns, but has a subtle logic error. By testing and reporting specific behaviors, you help Claude zero in on the problem rather than making blind guesses about what might be wrong.
+            </p>
+        </section>
+
+        <section>
+            <h2>Crafting Effective Prompts</h2>
+            <p>
+                With an understanding of how the model works, you can now appreciate why certain prompting strategies are effective. The following principles are not arbitrary rules but direct consequences of the model's architecture and training.
+            </p>
+
+            <h3>Be Specific About What You Want</h3>
+            <p>
+                Vague prompts force the model to guess your intent, leading to high variance in outcomes. Specific prompts constrain the probability space, making responses more predictable and aligned with your goals. Instead of "make a function that checks for a winner," try "create a function called check_winner that takes a board list as a parameter and returns the winning player (X or O) or None if there is no winner yet. It should check all rows, columns, and diagonals."
+            </p>
+
+            <p>
+                Specificity does not mean verbosity. You do not need to specify every implementation detail. But you should clearly communicate the function's purpose, its inputs and outputs, and any key requirements. This gives Claude enough constraints to generate appropriate code while leaving room for it to handle implementation details.
+            </p>
+
+            <h3>Provide Context, Even If You Think Claude Should Remember</h3>
+            <p>
+                Because of the context window limitation, you cannot assume Claude remembers everything from earlier in the conversation. If you are referring to something specific, name it explicitly. Instead of "modify that validation function," say "modify the validate_move function in game.py." If you are building on earlier decisions, restate them briefly: "In our tic-tac-toe game where we are using a flat list of nine elements to represent the board..."
+            </p>
+
+            <p>
+                This redundancy feels unnecessary to humans, but it is essential for maintaining consistency across multiple exchanges with the model. The cost of a few extra words is far lower than the cost of Claude generating code that conflicts with your existing implementation because it lost track of your design decisions.
+            </p>
+
+            <h3>Request One Thing at a Time</h3>
+            <p>
+                Multi-part requests ("add input validation and also refactor the display function and also add a score tracker") make it harder for the model to maintain coherence across all the requested changes. Each individual change affects probability predictions for subsequent changes, and trying to juggle multiple changes simultaneously increases the likelihood of inconsistencies.
+            </p>
+
+            <p>
+                Single-purpose prompts keep things manageable. Request one feature, verify it works, understand the code, then request the next feature. This does not mean you cannot plan ahead; it means you execute your plan one step at a time rather than trying to do everything simultaneously.
+            </p>
+
+            <h3>Describe Problems Concretely</h3>
+            <p>
+                When something goes wrong, describe the problem in terms of observable behavior rather than your hypothesis about the cause. Instead of "I think there is a problem with the loop," say "when I run the program, the game continues asking for input even after someone has won." The model can generate better solutions when working from concrete symptoms rather than potentially incorrect diagnoses.
+            </p>
+
+            <p>
+                Include error messages verbatim when you get them. Error messages contain specific information about what went wrong, often including line numbers and error types. This information is extremely valuable for Claude in diagnosing and fixing issues. Instead of "I got an error about lists," copy and paste the actual error: "IndexError: list index out of range on line 23."
+            </p>
+        </section>
+
+        <section>
+            <h2>Understanding Code Claude Generates</h2>
+            <p>
+                Claude can generate code much faster than you can write it by hand, but speed without understanding provides little learning value. The goal of this activity is not to finish quickly but to develop skills and knowledge. Treat Claude-generated code as something to study and understand, not just run.
+            </p>
+
+            <p>
+                When Claude generates a function, read through it before testing it. Try to understand what each line does. If you encounter something unfamiliar—a function you have not seen, a Python feature you do not recognize, a clever algorithm—ask Claude to explain it. You might say "Can you explain line by line what this function does?" or "What does the enumerate function do in this context?" or "Why did you choose a dictionary instead of separate variables here?"
+            </p>
+
+            <p>
+                Understanding the code allows you to maintain and extend it yourself. If you only run code without understanding it, you become dependent on Claude for every small change. But if you take time to understand each piece, you build the knowledge needed to make modifications independently. The AI is a learning tool, not a crutch.
+            </p>
+
+            <h3>Verifying Correctness</h3>
+            <p>
+                Large language models can generate code that looks correct but has subtle bugs. They pattern-match against code they have seen during training, but they do not formally verify correctness. This means you need to test thoroughly and think critically about whether the code actually does what you want.
+            </p>
+
+            <p>
+                Think about edge cases. If Claude generates input validation, test it with various inputs: valid inputs, invalid inputs, boundary cases like empty strings or extreme numbers. If it generates a function to check for winning conditions, verify that it catches all possible winning configurations. The model might generate code that works for common cases but fails on edge cases because those edge cases were less common in its training data.
+            </p>
+        </section>
+
+        <section>
+            <h2>Common Prompting Patterns</h2>
+            <p>
+                Certain types of requests come up repeatedly in software development. Understanding common patterns helps you communicate more efficiently with Claude Code.
+            </p>
+
+            <h3>Asking for Explanations</h3>
+            <p>
+                When you need to understand existing code, be specific about what you want explained and at what level of detail. "Explain this function" might give you a high-level overview. "Explain this function line by line" gives you detailed analysis. "Why did you use a for loop instead of a while loop here?" focuses on specific design decisions.
+            </p>
+
+            <p>
+                You can also ask for explanations at different levels of abstraction. "What does this function do?" gives you a functional description. "How does this function work?" gets into implementation details. "Why would I use this function?" helps you understand its role in the broader program.
+            </p>
+
+            <h3>Requesting Refactoring</h3>
+            <p>
+                As you build a project, your code may become messy or repetitive. You can ask Claude to clean it up: "Can you refactor the board display code to be more readable?" or "I notice I am repeating the input validation logic in three places. Can you create a single function to handle it?"
+            </p>
+
+            <p>
+                When requesting refactoring, specify what you want to improve: readability, performance, organization, or reduction of repetition. Different goals lead to different refactoring approaches. "Make this more efficient" is different from "make this easier to understand," and Claude needs to know which you prioritize.
+            </p>
+
+            <h3>Adding Features</h3>
+            <p>
+                When your core functionality works and you want to extend it, describe the new feature in terms of behavior: "Add a feature that tracks how many games each player has won and displays the score after each game." Be clear about how the feature should integrate with existing code: "Add this without changing the core game loop logic."
+            </p>
+
+            <p>
+                If the feature is complex, consider breaking it into sub-features. Instead of "add a computer opponent with three difficulty levels," start with "add a computer opponent that makes random valid moves," then later "make the computer opponent block the player from winning when possible."
+            </p>
+
+            <h3>Debugging</h3>
+            <p>
+                Debugging prompts should include specific information about what went wrong. The structure "When I [describe what you did], I expected [describe expected behavior], but instead [describe actual behavior]" provides Claude with clear information about the problem. For example: "When I enter position 5, I expected the board to show an X in the center, but instead I get an IndexError."
+            </p>
+
+            <p>
+                If you have an error message, include it completely. If the behavior is wrong but there is no error, describe the incorrect behavior specifically and include any relevant output. The more concrete information you provide, the better Claude can help diagnose and fix the issue.
+            </p>
+        </section>
+
+        <section>
+            <h2>Advanced Techniques</h2>
+            <p>
+                Once you are comfortable with basic prompting, you can employ more sophisticated strategies to work more effectively.
+            </p>
+
+            <h3>Asking "What If" Questions</h3>
+            <p>
+                Before implementing a feature, you can ask Claude about different approaches and their tradeoffs. "What are different ways I could represent the game board?" or "Should I use a list of lists or a flat list for the board?" Claude can explain options and help you make informed design decisions.
+            </p>
+
+            <p>
+                These exploratory questions help you understand not just how to implement something, but why you might choose one approach over another. This develops your architectural thinking beyond just getting something to work.
+            </p>
+
+            <h3>Requesting Examples and Comparisons</h3>
+            <p>
+                If you are unfamiliar with a concept, ask Claude for examples and comparisons. "Can you show me an example of using a dictionary to store player data?" or "What is the difference between using a list and a set for tracking guessed letters?" Examples make abstract concepts concrete and help you understand when to apply different programming constructs.
+            </p>
+
+            <h3>Progressive Enhancement</h3>
+            <p>
+                As your project grows, you can ask Claude to suggest improvements or point out potential problems. "Are there any edge cases this code does not handle?" or "What improvements could make this code more robust?" This helps you think critically about code quality beyond just basic functionality.
+            </p>
+        </section>
+
+        <section>
+            <h2>Common Pitfalls and How to Avoid Them</h2>
+
+            <h3>Accepting Code Without Understanding</h3>
+            <p>
+                The biggest mistake is treating Claude as a black box that produces code you run without understanding. This leaves you unable to maintain or extend the code yourself. Always take time to read and understand generated code. Ask questions about anything unclear. Your goal is to learn, not just to have a finished product.
+            </p>
+
+            <h3>Not Testing Incrementally</h3>
+            <p>
+                Adding multiple features before testing creates debugging nightmares. When something breaks, you will not know which change caused the problem. Test after every change, no matter how small. This catches issues immediately when they are easiest to fix and keeps your development process smooth.
+            </p>
+
+            <h3>Losing Track of Project State</h3>
+            <p>
+                In long sessions, you may forget what your code does or what design decisions you made earlier. Keep notes about key choices: "using a flat list indexed 0-8 for the board" or "player symbols stored in a dictionary." These notes help you provide context in later prompts and keep your project consistent.
+            </p>
+
+            <h3>Over-Reliance Without Critical Thinking</h3>
+            <p>
+                Claude is a tool, not an authority. It can make mistakes, generate inefficient code, or suggest approaches that do not fit your project. Think critically about the code it generates. Does it make sense? Could it be simpler? Are there problems it might not have considered? Your judgment matters.
+            </p>
+        </section>
+
+        <section>
+            <h2>Putting It All Together</h2>
+            <p>
+                Effective prompting is not about memorizing magic phrases. It is about understanding how the underlying technology works and aligning your communication style with that architecture. Language models are probability engines operating within context windows, generating text token by token based on patterns learned from training data. They do not have persistent memory, cannot verify their outputs by running code, and work best when building incrementally with clear, specific guidance.
+            </p>
+
+            <p>
+                When you understand these principles, you can adapt your prompting to any situation. If something is not working, ask yourself: Was I specific enough? Is the relevant context still within the conversation window? Have I tested incrementally? Am I providing concrete information about problems? These questions guide you toward more effective interaction.
+            </p>
+
+            <p>
+                The goal is not to become an expert in prompting tricks but to develop an intuition for working collaboratively with AI tools. This intuition will serve you well as AI-assisted development becomes increasingly common in professional software engineering.
+            </p>
+        </section>
+
+        <section>
+            <h2>Resources for Deeper Understanding</h2>
+            <p>
+                If you want to learn more about how large language models work and how to use them effectively, several high-quality educational resources are available. These materials provide deeper technical background and can enhance your understanding of the principles discussed in this guide.
+            </p>
+
+            <p>
+                <strong>3Blue1Brown</strong> has excellent visual explanations of neural networks and deep learning concepts that underpin large language models. The videos on neural networks and attention mechanisms are particularly relevant. Available at <a href="https://www.youtube.com/c/3blue1brown">youtube.com/c/3blue1brown</a>.
+            </p>
+
+            <p>
+                <strong>Andrej Karpathy</strong>, a leading AI researcher, has created educational content on language models and how they work. His lectures provide technical depth while remaining accessible to learners without advanced mathematics backgrounds. Look for his lectures on YouTube and his blog at <a href="https://karpathy.ai">karpathy.ai</a>.
+            </p>
+
+            <p>
+                <strong>Jay Alammar's blog</strong> offers illustrated guides to understanding transformers and language models, with clear visualizations that make complex architectures more intuitive. Find his work at <a href="https://jalammar.github.io">jalammar.github.io</a>.
+            </p>
+
+            <p>
+                The <strong>Anthropic documentation</strong> at <a href="https://docs.anthropic.com">docs.anthropic.com</a> provides specific information about Claude's capabilities, limitations, and best practices for prompting.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Claude Code Learning Activity | QQI Level 5/6 Computer Science</p>
+        <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
+    </footer>
+</body>
+</html>

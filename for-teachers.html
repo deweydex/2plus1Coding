@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Teachers - Claude Code Learning Activity</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="site-title">Claude Code Learning Activity</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li class="dropdown">
+                    <a href="#projects">Projects ▾</a>
+                    <div class="dropdown-content">
+                        <a href="projects/tic-tac-toe.html">Tic-Tac-Toe</a>
+                        <a href="projects/word-guessing.html">Word Guessing</a>
+                        <a href="projects/rpg-battle.html">RPG Battle</a>
+                        <a href="projects/image-processing.html">Image Processing</a>
+                        <a href="projects/machine-learning.html">Machine Learning</a>
+                    </div>
+                </li>
+                <li><a href="prompting-guide.html">Prompting Guide</a></li>
+                <li><a href="for-teachers.html">For Teachers</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Facilitation Guide for Teachers</h1>
+
+        <div class="intro">
+            This guide provides practical advice for facilitating the Claude Code learning activity in classroom or workshop settings. It addresses timing, student support strategies, common challenges, and pedagogical considerations specific to this activity.
+        </div>
+
+        <section>
+            <h2>Pedagogical Foundation</h2>
+            <p>
+                This activity is grounded in constructivist learning theory, where students build understanding through direct experience rather than passive reception of information. The design draws on John Dewey's emphasis on learning by doing, Paulo Freire's dialogical approach where learning emerges through conversation and collaboration, and contemporary research on pair programming in computer science education.
+            </p>
+
+            <p>
+                The activity deliberately avoids a transmission model where the teacher is the sole source of knowledge. Instead, you act as a facilitator who creates conditions for learning, asks probing questions, and helps students develop problem-solving strategies. This approach recognizes that adult learners at QQI Level 5 and 6 bring diverse experiences and capabilities. Your role is to support them in constructing knowledge rather than delivering it.
+            </p>
+
+            <p>
+                The emphasis on process over product reflects Alfie Kohn's critique of extrinsic motivation systems. Students engage with the work because it is genuinely interesting and challenging, not to achieve a grade or complete a requirement. When assessing this activity, focus on the learning process, the questions students ask, and their developing understanding rather than solely on whether their final code works perfectly.
+            </p>
+        </section>
+
+        <section>
+            <h2>Pre-Workshop Preparation</h2>
+            <p>
+                Successful workshops begin with thorough preparation. Ensure all computers have Claude Code installed and configured before students arrive. Test the installation on at least one machine to verify that the API keys work and that students can create and run simple Python programs. Technical problems at the start consume time and create frustration that affects the entire session.
+            </p>
+
+            <p>
+                Prepare printed handouts of the project instructions, even though they are available on the website. Students benefit from having physical materials they can mark up, and internet connectivity issues will not block access to instructions. Print the prompting guide as well, as students will reference it frequently.
+            </p>
+
+            <p>
+                Consider the pairing strategy before the session begins. If you know your students' experience levels, you can thoughtfully construct pairs that balance skill levels. A more experienced student mentoring a beginner benefits both learners. The advanced student solidifies understanding by teaching, and the beginner gets personalized support. However, be mindful of creating pairs where the skill gap is so large that the beginner becomes a passive observer. Both students should actively contribute.
+            </p>
+
+            <p>
+                Decide in advance how you will handle students who finish early and those who fall behind. Have extension ideas ready for fast finishers, and identify which features can be cut for students who are struggling to complete the basics. The project handouts suggest enhancements, but you should be prepared to guide students toward the most educational extensions rather than just the flashiest features.
+            </p>
+        </section>
+
+        <section>
+            <h2>Workshop Structure and Timing</h2>
+            <p>
+                The suggested 80-90 minute timeline is realistic but requires active facilitation to maintain. Some pairs will naturally work faster or slower than others, and your role is to keep everyone progressing without forcing an artificial pace.
+            </p>
+
+            <h3>Phase 1: Planning (15 minutes)</h3>
+            <p>
+                Begin with a brief whole-class introduction explaining the activity structure and learning goals. Clarify that the objective is learning, not producing perfect code. Students should focus on understanding each step rather than racing to finish. Emphasize the value of mistakes and debugging as learning opportunities.
+            </p>
+
+            <p>
+                Once pairs begin planning, circulate to ensure they are actually planning rather than jumping straight into coding. Good planning questions include: What is the core functionality we need? What data do we need to track? What should happen on each turn? How will we know if someone has won? Pairs should sketch their game flow on paper before touching the keyboard.
+            </p>
+
+            <p>
+                Watch for pairs who overplan by trying to design every possible feature. Redirect them toward identifying the minimum viable product: the simplest version that could work. They can always add features later. Conversely, watch for pairs who rush through planning without genuine thought. Ask probing questions to ensure they have a coherent vision before starting.
+            </p>
+
+            <h3>Phase 2: Building (35 minutes)</h3>
+            <p>
+                This is the core development phase. Your main role is to circulate, observe, and intervene judiciously. Do not rush to help at the first sign of struggle. Productive struggle is where learning happens. Allow students time to work through problems, but be alert for unproductive frustration where they are truly stuck.
+            </p>
+
+            <p>
+                When you do intervene, ask guiding questions rather than providing answers. If code is not working, ask: What did you expect to happen? What actually happened? Have you tested each piece individually? Can you explain what this function is supposed to do? These questions help students develop debugging habits rather than depending on you to fix problems.
+            </p>
+
+            <p>
+                Watch for pairs where one person dominates while the other watches passively. Interrupt gently and redirect: "Could you switch who is typing now?" or "Can you explain to me what this code does?" addressed to the quieter partner. Effective pair programming requires both people to stay engaged.
+            </p>
+
+            <p>
+                Monitor whether students are testing frequently or building large amounts of code before running anything. Remind pairs to test after each small addition. When they hit bugs, ask them to describe what broke and what they changed most recently. This teaches the crucial skill of isolating problems.
+            </p>
+
+            <h3>Phase 3: Enhancement (20 minutes)</h3>
+            <p>
+                By this phase, most pairs should have basic functionality working. Encourage them to choose enhancements that interest them rather than working through a prescribed list. Ask what they find frustrating about their current implementation or what feature would make it more interesting. Student-directed enhancements create more engagement than teacher-assigned tasks.
+            </p>
+
+            <p>
+                For pairs who finished early, suggest deeper challenges: Can you make the code more elegant? Are there edge cases you have not handled? Could you refactor repeated code into functions? What would make this code easier for someone else to understand? These questions push beyond just adding features to thinking about code quality.
+            </p>
+
+            <p>
+                For pairs who are behind, help them assess whether their core functionality works well enough. A simple, working project is far more valuable than an ambitious, broken one. It is better to have solid fundamentals and skip the enhancements than to have a complex mess that does not work. Reassure them that finishing the basics is a real accomplishment.
+            </p>
+
+            <h3>Phase 4: Reflection (10 minutes)</h3>
+            <p>
+                Do not skip the reflection phase even if time is short. Learning happens not just in doing but in thinking about what you did. Have pairs swap computers and play each other's games. This gives them a sense of audience and allows them to see different approaches to the same problem.
+            </p>
+
+            <p>
+                Lead a brief whole-class discussion. Ask: What was harder than you expected? What was easier? What did you learn about working with AI tools? What would you do differently next time? These questions encourage metacognitive reflection that helps students transfer learning to new contexts.
+            </p>
+
+            <p>
+                Avoid the temptation to turn this into a showcase where only the "best" projects are demonstrated. Every pair should share something, even if it is what they learned from bugs they encountered. The goal is to validate all learning, not just successful products.
+            </p>
+        </section>
+
+        <section>
+            <h2>Common Challenges and Interventions</h2>
+
+            <h3>Students Jump Straight to Coding Without Planning</h3>
+            <p>
+                Some students, particularly those with some programming experience, want to start coding immediately. Insist on at least brief planning. Ask them to explain their approach to you verbally. If they cannot clearly articulate what they will build, they are not ready to code. The few minutes spent planning will save much more time later when they otherwise would need to backtrack and restructure.
+            </p>
+
+            <h3>Claude Generates Too Much Code at Once</h3>
+            <p>
+                If students ask Claude to build everything at once and get overwhelmed, help them step back and simplify. Ask them to identify one small piece that works in the generated code. Can they understand that piece? Good, set the rest aside and start over, building that piece themselves with Claude's help. This models the iterative approach even when they initially tried to avoid it.
+            </p>
+
+            <h3>Students Do Not Understand the Code They Are Running</h3>
+            <p>
+                If you observe students running code without reading it or asking Claude for explanations, intervene. Ask them to explain what a function does. If they cannot, tell them not to proceed until they understand it. Suggest they ask Claude for a line-by-line explanation. Make it clear that understanding is not optional; it is the whole point of the activity.
+            </p>
+
+            <h3>Pairs with Mismatched Skill Levels</h3>
+            <p>
+                When one partner knows significantly more than the other, there is a risk of the advanced student doing all the work. Explicitly frame the advanced student's role as a mentor, not a coder. Their job is to help their partner understand, not to write code for them. Consider asking the beginner to do all the typing and prompting, with the advanced student providing guidance but not touching the keyboard.
+            </p>
+
+            <h3>Technical Problems Derail Progress</h3>
+            <p>
+                Despite preparation, technical issues will arise. Have a backup plan. Can students share computers if one machine is not working? Do you have a simple test program students can use to verify their setup? When technical issues occur, help quickly and pragmatically. The goal is to get students back to learning, not to teach them system administration.
+            </p>
+
+            <h3>Students Finish Very Early</h3>
+            <p>
+                Pairs who finish with substantial time remaining should be redirected to deeper work. Ask them to review their code critically. Is it well-organized? Could another student understand it? Are there edge cases they have not tested? Could they write a brief README explaining how to play their game? These tasks develop important professional skills beyond just coding.
+            </p>
+
+            <p>
+                You can also suggest they start a second project if they have truly exhausted their first one. Alternatively, ask them to help other pairs, but only in the same mentoring mode: asking questions and guiding, not solving problems directly.
+            </p>
+
+            <h3>Students Are Completely Stuck</h3>
+            <p>
+                When a pair is genuinely stuck and cannot progress despite your questions, provide more direct help. It is better to unstick them so they can continue learning than to let them remain frustrated. But even when helping directly, explain your reasoning. Do not just fix their code; show them how you identified the problem and why your solution works.
+            </p>
+        </section>
+
+        <section>
+            <h2>Assessment Considerations</h2>
+            <p>
+                If this activity is part of a graded course, assessment should focus on process and learning rather than just the final product. Traditional grading based on whether the program works perfectly contradicts the pedagogical principles underlying this activity and creates perverse incentives to rush or copy without understanding.
+            </p>
+
+            <p>
+                Consider assessing based on: demonstration of iterative development process, ability to explain how their code works, quality of questions asked during the session, effectiveness of debugging strategies, and evidence of genuine understanding in the reflection phase. These criteria capture real learning better than whether the final program has all features working.
+            </p>
+
+            <p>
+                If you must assign a grade, consider making it completion-based (did they engage seriously with the activity?) or using a specification grading approach where meeting clearly defined criteria earns full marks regardless of how "impressive" the final product is. This reduces anxiety and encourages students to focus on learning rather than performing.
+            </p>
+
+            <p>
+                Formative assessment through observation and questioning during the activity provides more valuable feedback than summative assessment of the final product. Use your observations to identify areas where students need additional support in future sessions.
+            </p>
+        </section>
+
+        <section>
+            <h2>Adapting for Different Contexts</h2>
+
+            <h3>Shorter Sessions</h3>
+            <p>
+                If you have less than 80 minutes, reduce the enhancement phase rather than rushing the building phase. It is better for students to build less but understand it thoroughly than to race through more material superficially. Alternatively, split the activity across two sessions: planning and initial build in one session, completion and enhancement in the second.
+            </p>
+
+            <h3>Longer Sessions</h3>
+            <p>
+                With more time, you can incorporate additional reflection activities. Have students write brief explanations of their code for an imaginary beginner. Ask them to compare their approach with another pair's approach to the same project. Introduce code review where pairs give each other constructive feedback.
+            </p>
+
+            <h3>Fully Remote Delivery</h3>
+            <p>
+                This activity works remotely but requires adaptation. Use breakout rooms for pair work. Increase check-in frequency since you cannot see screens as easily. Encourage pairs to use screen sharing so both can see the code even when only one is typing. The reflection phase can happen in the main room with pairs reporting out about their experience.
+            </p>
+
+            <h3>Self-Paced Individual Work</h3>
+            <p>
+                While designed for pairs, the activity works for individuals. The main loss is the collaborative learning that comes from discussion and teaching each other. To partially compensate, encourage students working individually to explain their code aloud to themselves or write brief comments explaining their reasoning. This promotes the reflective thinking that normally happens in dialogue with a partner.
+            </p>
+        </section>
+
+        <section>
+            <h2>Following Up After the Activity</h2>
+            <p>
+                The learning from this activity extends beyond the session itself. Consider follow-up activities that build on what students learned. They could write a brief reflection document about what they learned regarding AI-assisted development. They could extend their projects independently. They could tackle a different project from the set using the skills developed in the first one.
+            </p>
+
+            <p>
+                If this activity is part of a longer course, look for opportunities to integrate AI-assisted development into future work. Students have now been introduced to a powerful tool; help them understand when it is appropriate to use it and when they should work without AI assistance to develop skills that require focused practice.
+            </p>
+
+            <p>
+                Consider having students revisit their projects later in the course after learning additional programming concepts. Can they improve their original code using new techniques? This demonstrates growth and reinforces that programming is iterative not just within a project but across time as skills develop.
+            </p>
+        </section>
+
+        <section>
+            <h2>Resources for Teachers</h2>
+            <p>
+                If you want to deepen your own understanding of the pedagogical approaches underlying this activity, several key texts inform the design. Paulo Freire's <em>Pedagogy of the Oppressed</em> articulates the dialogical approach to education that shapes the pair programming and facilitation strategies. John Dewey's <em>Experience and Education</em> explains why learning by doing is more effective than passive instruction. bell hooks' <em>Teaching to Transgress</em> offers insights on creating engaged, democratic classrooms.
+            </p>
+
+            <p>
+                For computer science education specifically, the ACM's Computing Education resources at <a href="https://www.acm.org/education">acm.org/education</a> provide research-based best practices. Studies on pair programming effectiveness are available through various CS education conferences, particularly SIGCSE (Special Interest Group on Computer Science Education).
+            </p>
+
+            <p>
+                Regarding AI in education, the landscape is evolving rapidly. Keep current with research on AI literacy and AI-assisted learning through sources like the <em>International Journal of Artificial Intelligence in Education</em> and educational technology conferences.
+            </p>
+        </section>
+
+        <section class="callout">
+            <h3>Questions or Feedback?</h3>
+            <p>
+                This activity and facilitation guide represent an initial design based on educational research and practical experience. If you facilitate this activity and have feedback, suggestions, or stories of what worked or did not work in your context, please consider contributing to the project repository. Your practical experience helps improve the activity for other educators.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Claude Code Learning Activity | QQI Level 5/6 Computer Science</p>
+        <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
+    </footer>
+</body>
+</html>

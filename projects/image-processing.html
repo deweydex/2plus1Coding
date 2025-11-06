@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing Project - Claude Code Learning Activity</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="site-title">Claude Code Learning Activity</a>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../getting-started.html">Getting Started</a></li>
+                <li class="dropdown">
+                    <a href="#projects">Projects ▾</a>
+                    <div class="dropdown-content">
+                        <a href="tic-tac-toe.html">Tic-Tac-Toe</a>
+                        <a href="word-guessing.html">Word Guessing</a>
+                        <a href="rpg-battle.html">RPG Battle</a>
+                        <a href="image-processing.html">Image Processing</a>
+                        <a href="machine-learning.html">Machine Learning</a>
+                    </div>
+                </li>
+                <li><a href="../prompting-guide.html">Prompting Guide</a></li>
+                <li><a href="../for-teachers.html">For Teachers</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Project: Image Processing and Manipulation</h1>
+
+        <div class="intro">
+            <span class="difficulty intermediate">Intermediate</span>
+            <p><strong>Estimated Time:</strong> 60-70 minutes | <strong>Language:</strong> Python</p>
+        </div>
+
+        <section>
+            <h2>Project Overview</h2>
+            <p>
+                This project introduces you to digital image processing, where you work with photographs and graphics to apply filters, adjust colors, and create visual effects. Unlike text-based projects, image processing provides immediate, visually satisfying feedback. You can see the results of your code as modified images, making the connection between code and output particularly tangible. This project bridges programming with visual arts and introduces concepts that underpin photography software, social media filters, medical imaging, and computer vision systems.
+            </p>
+
+            <p>
+                Digital images are fundamentally arrays of numbers representing pixel colors. When you apply a filter or adjustment, you are performing mathematical operations on these numbers in ways that produce visually meaningful results. A blur filter averages nearby pixels. A brightness adjustment multiplies pixel values by a constant. Edge detection finds regions where pixel values change rapidly. Understanding this numerical foundation demystifies how image processing works and reveals that impressive visual effects often arise from relatively simple mathematical transformations.
+            </p>
+
+            <p>
+                The starter code provides image loading and basic display functionality using the Python Imaging Library (Pillow), giving you immediate capability to work with images. You will build upon this foundation to implement filters, create effects, and develop an interface that lets users transform images interactively. The project offers substantial creative freedom through the wide variety of possible effects and the visual nature of the results.
+            </p>
+        </section>
+
+        <section>
+            <h2>What You Will Learn</h2>
+            <p>
+                This project develops several important competencies related to working with external libraries, manipulating structured data, and thinking about computational approaches to visual problems. You will learn to work with the Pillow library, which provides high-level abstractions for image operations. Understanding how to use external libraries effectively is crucial for practical programming, as most real-world projects build upon existing tools rather than implementing everything from scratch.
+            </p>
+
+            <p>
+                Images are represented as multidimensional arrays where each pixel has color values. In RGB images, each pixel has three numbers representing red, green, and blue intensities. Grayscale images have a single intensity value per pixel. Understanding this representation helps you think about images as data that can be manipulated computationally. When you adjust brightness, you are scaling these numbers. When you apply a color filter, you are modifying the relative values of different color channels. This numerical perspective reveals connections between programming, mathematics, and visual arts.
+            </p>
+
+            <p>
+                The project teaches you about the tradeoffs between high-level and low-level operations. Pillow provides built-in filters for common operations like blur and edge detection, which you can apply with simple function calls. These high-level operations are convenient but offer limited control. You can also access and modify individual pixels, providing complete control but requiring more code and careful thinking about efficiency. Learning when to use each approach develops your judgment about appropriate levels of abstraction for different tasks.
+            </p>
+
+            <p>
+                Working with visual output teaches you about user experience in a different way than text-based programs. With images, the quality of your results is immediately apparent. A poorly implemented filter produces visibly bad output. A well-balanced effect looks pleasing. This direct visual feedback develops your intuition about testing and refinement. You cannot hide bugs behind ambiguous text output; the images show exactly what your code does. This directness makes image processing an excellent domain for learning to write correct, well-tested code.
+            </p>
+        </section>
+
+        <section>
+            <h2>Getting the Starter Code</h2>
+            <p>
+                Before beginning, you need to install the Pillow library, which provides image processing capabilities. Open a terminal and run the command <code>pip install pillow</code>. This installs the library and makes it available for import in your Python programs. If you encounter permission errors, try <code>pip install --user pillow</code> instead.
+            </p>
+
+            <p>
+                Two versions of starter code are available. The beginner version provides image loading and display functions, allowing you to focus on implementing filters and effects. The advanced version additionally includes several basic transformations already implemented, letting you focus on creating more sophisticated effects and building a comprehensive user interface.
+            </p>
+
+            <p>
+                Download the appropriate starter code and run it immediately. The program will attempt to download a sample image automatically if you do not have one, or you can place your own image file in the project directory. Seeing the starter code work with actual images helps you understand what foundation you are building upon.
+            </p>
+
+            <div style="display: flex; gap: 1rem; margin: 2rem 0;">
+                <a href="../starter-code/imageproc_beginner.py" download class="btn">Download Beginner Starter</a>
+                <a href="../starter-code/imageproc_advanced.py" download class="btn btn-secondary">Download Advanced Starter</a>
+            </div>
+
+            <div class="note">
+                <strong>First Steps:</strong> After downloading, install Pillow with <code>pip install pillow</code>, then run <code>python imageproc_beginner.py</code> (or <code>imageproc_advanced.py</code>). The program demonstrates loading and displaying images, which are fundamental operations you will build upon.
+            </div>
+        </section>
+
+        <section>
+            <h2>Phase 1: Planning Your Build (15 minutes)</h2>
+            <p>
+                Before implementing effects, examine the starter code carefully to understand how images are represented and manipulated. The Pillow library provides an Image object that encapsulates all the pixel data and provides methods for common operations. You do not need to think about individual pixels unless you want to; most operations work at the level of entire images. This abstraction makes image processing accessible while still allowing low-level control when needed.
+            </p>
+
+            <p>
+                Consider what effects you want to implement and in what order. Start with simple transformations that use built-in Pillow functionality: converting to grayscale, adjusting brightness, applying standard filters like blur or sharpen. These operations teach you the basic workflow of loading an image, transforming it, and saving the result. Once comfortable with this workflow, you can implement more creative effects that require combining operations or working with pixels directly.
+            </p>
+
+            <h3>Understanding Image Representation</h3>
+            <p>
+                Digital images consist of pixels arranged in a grid. Each pixel's color is represented by numbers. In RGB mode, three values between 0 and 255 represent red, green, and blue intensities. Maximum values (255, 255, 255) produce white. Zero values (0, 0, 0) produce black. Intermediate values create the spectrum of visible colors. In grayscale mode, a single value represents brightness from black (0) to white (255). Understanding this numerical representation helps you reason about what image operations do at a fundamental level.
+            </p>
+
+            <p>
+                When you adjust brightness, you multiply these pixel values by a factor. When you convert to grayscale, you combine the RGB values using a weighted average that accounts for human perception (green contributes more to perceived brightness than red or blue). When you apply a blur filter, you average each pixel with its neighbors. These mathematical operations on arrays of numbers produce visually meaningful transformations, revealing the deep connection between mathematics and visual perception.
+            </p>
+
+            <h3>Effect Implementation Strategies</h3>
+            <p>
+                Some effects use built-in Pillow filters, which are fast and well-optimized but offer limited customization. Other effects require writing custom logic that processes pixels according to specific algorithms. For example, a sepia tone effect cannot be achieved with a single built-in filter; you need to adjust the RGB channels according to specific formulas that produce the characteristic warm brown tone. Deciding which approach to use for each effect is part of the design process.
+            </p>
+
+            <p>
+                Think about the user interface for your image processor. Will it be a menu-driven program that asks users to choose effects interactively? Will it process a batch of images with predefined settings? Will it show previews before applying effects? Different interface choices create different user experiences and require different implementation approaches. For this project, a simple menu system that applies one effect at a time works well and teaches important concepts about program flow and user interaction.
+            </p>
+        </section>
+
+        <section>
+            <h2>Phase 2: Building Core Effects (35 minutes)</h2>
+            <p>
+                Build your image processing capabilities incrementally, starting with simple effects and progressing to more complex ones. This approach lets you verify each effect works correctly before adding the next, preventing the accumulation of bugs that become difficult to isolate and fix.
+            </p>
+
+            <h3>Grayscale Conversion</h3>
+            <p>
+                Converting an image to grayscale removes color information, leaving only brightness values. This is one of the simplest transformations and serves as an excellent starting point. Pillow provides a <code>convert</code> method that handles the conversion automatically, properly weighting the color channels according to human perception. Understanding why this weighting matters (humans perceive green more strongly than blue) connects computational operations to perceptual psychology.
+            </p>
+
+            <p>
+                After implementing grayscale conversion, test it with different types of images. Colorful photographs become monochrome. Graphics with distinct colors become shades of gray. Notice how some images remain highly detailed in grayscale while others lose significant visual information when color is removed. This observation teaches you that different image types have different characteristics and that transformations affect them differently.
+            </p>
+
+            <h3>Brightness and Contrast Adjustment</h3>
+            <p>
+                Brightness adjustment makes images lighter or darker by scaling pixel values. The Pillow ImageEnhance module provides a Brightness enhancer that handles this elegantly. A factor of 1.0 leaves brightness unchanged. Values below 1.0 darken the image. Values above 1.0 brighten it. Implementing this teaches you about parameterized transformations where the same operation produces different results based on input parameters.
+            </p>
+
+            <p>
+                Contrast adjustment makes light areas lighter and dark areas darker, increasing the visual distinction between different regions. This is mathematically different from brightness adjustment and produces different visual results. High contrast creates dramatic, punchy images. Low contrast produces flat, muted appearance. Understanding the difference between brightness and contrast develops your ability to reason about different types of visual transformations.
+            </p>
+
+            <h3>Applying Built-in Filters</h3>
+            <p>
+                Pillow includes several standard filters in the ImageFilter module: BLUR, SHARPEN, EDGE_ENHANCE, FIND_EDGES, EMBOSS, and others. These filters implement standard image processing algorithms efficiently. Applying them teaches you to work with library functionality without needing to understand the underlying mathematical details initially. You can apply a blur filter by simply calling <code>image.filter(ImageFilter.BLUR)</code>, making sophisticated image processing accessible with minimal code.
+            </p>
+
+            <p>
+                Experiment with different filters on various images to understand what each does. BLUR softens images by averaging nearby pixels. SHARPEN enhances edges by accentuating differences between adjacent pixels. FIND_EDGES detects boundaries in the image by finding regions of rapid intensity change. EMBOSS creates a three-dimensional appearance by highlighting edges directionally. Understanding these effects through experimentation develops your intuition about image processing operations.
+            </p>
+
+            <h3>Color Manipulation</h3>
+            <p>
+                Working with color channels opens up numerous creative effects. You can access individual RGB channels using the <code>split</code> method, which returns three separate images representing the red, green, and blue components. Modifying these channels independently and recombining them with <code>merge</code> creates various color effects. Enhancing the red channel while reducing blue creates a warm tone. Reducing red while enhancing blue creates a cool tone. These color manipulations are the foundation of color grading in photography and cinematography.
+            </p>
+
+            <p>
+                Creating a sepia tone effect requires specific color channel manipulation. The classic sepia formula converts RGB values to new values that produce the characteristic warm brown tone associated with aged photographs. Implementing this effect teaches you to work with the mathematical relationships between color channels and shows how specific formulas produce recognizable visual styles. This connects programming with art history and photographic traditions.
+            </p>
+
+            <h3>Geometric Transformations</h3>
+            <p>
+                Beyond color and filter operations, you can transform images geometrically by rotating, flipping, cropping, or resizing them. Pillow provides methods for all these operations. Rotation requires specuring an angle and deciding how to handle the background that appears in corners. Resizing requires choosing a resampling algorithm that determines how new pixel values are calculated from old ones. LANCZOS resampling produces high-quality results but is slower than simpler methods like NEAREST. Understanding these tradeoffs between quality and performance is important for practical programming.
+            </p>
+        </section>
+
+        <section>
+            <h2>Phase 3: Advanced Effects and Features (20 minutes)</h2>
+            <p>
+                With basic effects working, you can implement more sophisticated transformations and build features that make your image processor more useful and interesting. Choose enhancements that teach concepts you want to explore or create effects you find visually appealing.
+            </p>
+
+            <h3>Custom Pixel-Level Operations</h3>
+            <p>
+                For complete control, you can access and modify individual pixels directly. The <code>getpixel</code> and <code>putpixel</code> methods allow reading and writing pixel values at specific coordinates. This low-level access lets you implement any transformation you can imagine, though it requires more code and careful attention to efficiency. A pixelation effect, for example, involves sampling pixels at regular intervals and filling surrounding regions with those sampled colors, creating the characteristic blocky appearance of low-resolution images.
+            </p>
+
+            <p>
+                Working at the pixel level teaches you about computational efficiency. Looping through every pixel in a large image can be slow if the operation for each pixel is complex. You learn to think about algorithmic efficiency not just theoretically but in terms of observable performance. A slow filter makes your program feel unresponsive; an efficient implementation produces results quickly. This direct feedback about performance helps you develop practical optimization instincts.
+            </p>
+
+            <h3>Effect Combinations and Pipelines</h3>
+            <p>
+                Interesting results often come from combining multiple effects. A photograph might be converted to grayscale, then have contrast increased, then have slight blur applied to soften harsh edges. Creating a system that allows chaining effects together teaches you about function composition and processing pipelines. Each effect takes an image and returns a transformed image, making it easy to apply effects sequentially.
+            </p>
+
+            <p>
+                Consider how to structure your code to make effect chaining easy and flexible. One approach maintains the current image state and allows users to repeatedly apply effects until satisfied, then save the final result. Another approach asks users to specify a sequence of effects upfront, then applies them all. Different architectural choices have different advantages for user experience and implementation complexity.
+            </p>
+
+            <h3>Batch Processing</h3>
+            <p>
+                Extending your program to process multiple images automatically teaches you about file system operations and iteration over collections. You might load all images from a directory, apply the same effect to each, and save them with modified names. This batch processing capability transforms your project from a tool that processes one image at a time to one that can handle entire photo collections efficiently.
+            </p>
+
+            <p>
+                Implementing batch processing requires careful error handling. If one image fails to process, should the entire batch fail or continue with remaining images? Should errors be logged for later review? These decisions affect how robust and usable your program is in practice. Making and implementing these decisions develops your judgment about practical software design beyond just making code work for the happy path.
+            </p>
+
+            <h3>Before and After Comparisons</h3>
+            <p>
+                Creating side-by-side comparison images that show original and processed versions helps users understand what effects do and decide if the results are desirable. This requires creating a new image large enough to hold both originals, positioning the images correctly, and handling images of different sizes. Implementing comparison views teaches you about image composition and working with multiple images simultaneously.
+            </p>
+
+            <p>
+                You might also create thumbnail galleries showing the original image and several different effects applied, helping users visualize their options before committing to a particular transformation. This kind of feature goes beyond the technical aspects of image processing to thinking about user experience and how to present information effectively.
+            </p>
+
+            <h3>Artistic Effects</h3>
+            <p>
+                More creative effects can produce striking visual results. A vignette effect darkens the edges of an image while keeping the center bright, drawing the viewer's eye toward the center. This involves calculating distance from the center for each pixel and darkening based on that distance. An oil painting effect involves specialized filtering that creates brushstroke-like appearance. Edge detection combined with color reduction can produce comic book or poster-like stylization.
+            </p>
+
+            <p>
+                Implementing artistic effects connects programming with visual arts and shows how algorithms can produce aesthetically interesting results. These effects also tend to be more complex than basic adjustments, providing good practice with image processing concepts and encouraging you to think creatively about what transformations are possible.
+            </p>
+        </section>
+
+        <section>
+            <h2>Understanding Image Processing Concepts</h2>
+
+            <h3>Convolution Filters</h3>
+            <p>
+                Many image filters work through convolution, a mathematical operation where each output pixel is calculated as a weighted sum of nearby input pixels. Different weight patterns (kernels) produce different effects. A blur kernel averages surrounding pixels equally. A sharpen kernel emphasizes the center pixel while subtracting neighbors, accentuating edges. Edge detection kernels highlight regions of rapid change. Understanding convolution provides insight into how many image processing operations work at a fundamental level.
+            </p>
+
+            <p>
+                While Pillow handles convolution internally for its built-in filters, understanding the concept helps you reason about what these filters do and why they produce particular results. This deeper understanding transforms image processing from a black box where you apply functions without knowing why they work to a clear system where effects arise from comprehensible mathematical operations.
+            </p>
+
+            <h3>Color Spaces</h3>
+            <p>
+                Images can be represented in different color spaces beyond RGB. The HSV color space represents colors by hue (the color itself), saturation (intensity of color), and value (brightness). HSV is often more intuitive for certain operations like adjusting only the color intensity without changing the specific hue. Understanding that multiple representations exist and learning to convert between them develops your appreciation for how choices about data representation affect what operations are easy or difficult to implement.
+            </p>
+
+            <h3>Lossy vs. Lossless Formats</h3>
+            <p>
+                Different image file formats have different characteristics. JPEG uses lossy compression, discarding information to achieve smaller file sizes. PNG uses lossless compression, preserving all information while still reducing file size. Repeatedly saving and loading a JPEG degrades quality; PNG preserves quality perfectly. Understanding these tradeoffs helps you make informed decisions about what formats to use for different purposes and teaches you that technical choices have practical consequences.
+            </p>
+        </section>
+
+        <section>
+            <h2>Testing and Debugging Visual Code</h2>
+            <p>
+                Testing image processing code differs from testing text-based programs because the output is visual rather than textual. You cannot simply check if the output equals expected text; you must visually inspect images to verify correctness. This makes testing more subjective but also more immediately rewarding. You can see whether your filters produce the intended visual effects without ambiguity.
+            </p>
+
+            <p>
+                Test your effects on different types of images. Photographs with lots of detail, simple graphics with solid colors, images with text, images with high contrast, images with subtle gradations—different image types may reveal different aspects of how your effects work. A filter that looks good on one image might produce artifacts on another. Comprehensive testing with varied inputs helps ensure your effects work well generally.
+            </p>
+
+            <h3>Common Issues</h3>
+            <p>
+                Brightness adjustments that exceed the valid pixel range (0-255) can cause clipping where bright areas become pure white or dark areas become pure black, losing detail. Pillow generally handles this automatically, but understanding the issue helps you recognize when it occurs. Resizing with inappropriate resampling algorithms can produce blurry or aliased results. Format conversion can alter image quality if moving between lossy and lossless formats. Each of these issues has visual indicators that help you identify and address problems.
+            </p>
+        </section>
+
+        <section>
+            <h2>Reflection and Extension</h2>
+            <p>
+                After completing your image processing project, reflect on what you learned about working with external libraries and processing structured data. The skills you developed—reading library documentation, understanding abstractions, working with multidimensional data, and thinking about performance—transfer to many other programming contexts. Image processing specifically connects programming with visual domains, showing how code can create and manipulate media beyond text.
+            </p>
+
+            <p>
+                Consider how you might extend this project further. Could you create a web interface that allows processing images through a browser? Could you process video, which is essentially a sequence of images? Could you implement computer vision algorithms that recognize objects or faces in images? Each extension builds on your working foundation while teaching new concepts and connecting to different domains.
+            </p>
+
+            <p>
+                Think about the applications of image processing beyond creating visual effects. Medical imaging uses these techniques to enhance diagnostic images. Satellite imagery processing helps analyze Earth's surface. Document processing uses similar techniques for OCR (optical character recognition). Autonomous vehicles rely on image processing for understanding their environment. Your project provides a foundation for understanding how these diverse applications work at a technical level.
+            </p>
+        </section>
+
+        <section class="callout">
+            <h3>Need Help?</h3>
+            <p>
+                If you encounter difficulties, review the <a href="../prompting-guide.html">Prompting Guide</a> for strategies on asking effective questions. When working with images, describing problems precisely helps. Instead of "the image looks wrong," specify what aspect is wrong: "the colors are too saturated" or "the edges look jagged after resizing." Precise problem descriptions lead to effective solutions.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Claude Code Learning Activity | QQI Level 5/6 Computer Science</p>
+        <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
+    </footer>
+</body>
+</html>
