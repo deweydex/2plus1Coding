@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started (Desktop) - Coding with AI</title>
+    <title>Getting Started - Coding with AI</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -12,13 +12,7 @@
             <a href="index.html" class="site-title">Coding with AI - Learning Activity</a>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <a href="#getting-started">Getting Started ▾</a>
-                    <div class="dropdown-content">
-                        <a href="getting-started-web.html">Web-Based (Recommended)</a>
-                        <a href="getting-started.html">Desktop Install</a>
-                    </div>
-                </li>
+                <li><a href="getting-started.html">Getting Started</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="prompting-guide.html">Prompting Guide</a></li>
                 <li><a href="for-teachers.html">For Teachers</a></li>
@@ -27,258 +21,305 @@
     </nav>
 
     <main>
-        <h1>Getting Started with Claude Code</h1>
+        <h1>Getting Started</h1>
 
         <div class="intro">
-            This page walks you through setting up Claude Code on your machine and completing your first interaction with the tool. Even if you are comfortable with command-line interfaces, take time to work through these steps to understand the specific workflow of Claude Code.
+            Choose your setup method below and follow the steps to start coding with AI assistance.
         </div>
 
-        <div class="table-of-contents">
-            <h2>On This Page</h2>
-            <ul>
-                <li><a href="#prerequisites">Prerequisites</a></li>
-                <li><a href="#installing">Installing Claude Code</a></li>
-                <li><a href="#configuration">First-Time Configuration</a></li>
-                <li><a href="#project-directory">Creating Your Project Directory</a></li>
-                <li><a href="#first-session">Starting Your First Claude Code Session</a></li>
-                <li><a href="#first-program">Your First Interaction: A Simple Program</a></li>
-                <li><a href="#workflow">Understanding the Claude Code Workflow</a></li>
-                <li><a href="#follow-up">Practicing Follow-Up Interactions</a></li>
-                <li><a href="#key-commands">Key Commands and Interactions</a></li>
-                <li><a href="#exiting">Exiting and Resuming</a></li>
-                <li><a href="#troubleshooting">Troubleshooting Common Issues</a></li>
-                <li><a href="#next-steps">Next Steps</a></li>
-            </ul>
-        </div>
-
-        <section id="prerequisites">
-            <h2>Prerequisites</h2>
-            <p>
-                Before installing Claude Code, you need to ensure your development environment has the necessary foundations. You will need Python installed on your system, as all the projects in this activity use Python. Most modern computers have Python pre-installed, but you may need to install or update it. You can verify whether Python is installed by opening a terminal or command prompt and typing <code>python --version</code> or <code>python3 --version</code>. You should see a version number of 3.8 or higher.
-            </p>
-
-            <p>
-                If Python is not installed or needs updating, visit the official Python website at <a href="https://www.python.org/downloads/">python.org/downloads</a> and download the appropriate installer for your operating system. During installation on Windows, make sure to check the box that says "Add Python to PATH" to ensure you can run Python from any command prompt.
-            </p>
-
-            <p>
-                You will also need a text editor or IDE for viewing code. While Claude Code can edit files directly, you will often want to view multiple files or review code in a more comfortable environment. Visual Studio Code, Atom, Sublime Text, or even a simple editor like Notepad++ will work. If you do not have a preferred editor, Visual Studio Code is free and works well for beginners.
-            </p>
-        </section>
-
-        <section id="installing">
-            <h2>Installing Claude Code</h2>
-            <p>
-                Claude Code is installed via npm, the Node Package Manager. If you do not have Node.js and npm installed, you will need to install them first. Visit <a href="https://nodejs.org/">nodejs.org</a> and download the LTS version for your operating system. The installer includes both Node.js and npm.
-            </p>
-
-            <p>
-                Once npm is available, open a terminal or command prompt and install Claude Code globally using the following command:
-            </p>
-
-            <pre><code>npm install -g claude-code</code></pre>
-
-            <p>
-                The installation process downloads the necessary files and makes the <code>claude-code</code> command available system-wide. This may take a minute or two depending on your internet connection. If you encounter permission errors on macOS or Linux, you may need to use <code>sudo npm install -g claude-code</code>, though this is not recommended practice. Better to fix your npm permissions first.
-            </p>
-
-            <p>
-                To verify the installation was successful, run the following command:
-            </p>
-
-            <pre><code>claude-code --version</code></pre>
-
-            <p>
-                You should see a version number displayed. If instead you see an error saying the command is not found, the installation did not complete successfully or your PATH is not configured correctly.
-            </p>
-        </section>
-
-        <section id="configuration">
-            <h2>First-Time Configuration</h2>
-            <p>
-                The first time you run Claude Code, you will need to authenticate with Anthropic's servers. Claude Code requires an Anthropic API key, which connects your local tool to Claude's AI models running in the cloud. If you are participating in a workshop, your instructor may provide you with an API key or configure this for you. If you are setting this up independently, you will need to create an account at <a href="https://console.anthropic.com/">console.anthropic.com</a> and generate an API key.
-            </p>
-
-            <p>
-                Once you have your API key, Claude Code will prompt you to enter it the first time you run the tool. The key is stored securely on your local machine and used to authenticate future requests. You will not need to enter it again unless you switch computers or explicitly reset your configuration.
-            </p>
-
-            <div class="note">
-                <strong>Note on API keys:</strong> Treat your API key like a password. Do not share it publicly or commit it to version control systems like Git. If you accidentally expose your key, you can deactivate it in the Anthropic console and generate a new one.
+        <!-- Version Selector -->
+        <div class="version-selector">
+            <h2>Choose Your Setup</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--color-white);">Both methods teach the same concepts and complete the same projects.</p>
+            <div class="version-toggle-buttons">
+                <button class="version-btn active" onclick="showVersion('web')" id="web-btn">
+                    🌐 Web-Based
+                    <span class="btn-label">Recommended • No Install</span>
+                </button>
+                <button class="version-btn" onclick="showVersion('desktop')" id="desktop-btn">
+                    💻 Desktop
+                    <span class="btn-label">Claude Code CLI</span>
+                </button>
             </div>
-        </section>
+        </div>
 
-        <section id="project-directory">
-            <h2>Creating Your Project Directory</h2>
-            <p>
-                Before starting Claude Code, create a dedicated directory for your project. This keeps your files organized and makes it easier to manage your work. Open a terminal and navigate to where you want to store your project, then create and enter a new directory:
-            </p>
+        <!-- WEB-BASED CONTENT -->
+        <div id="web-content" class="version-content active">
 
-            <pre><code>mkdir my-claude-project
-cd my-claude-project</code></pre>
+            <div class="callout" style="background: var(--color-tertiary); border-left: 4px solid var(--color-petrol);">
+                <h3>Quick Start (Web-Based)</h3>
+                <ol style="margin: 0; padding-left: 1.5rem;">
+                    <li><strong>Create accounts:</strong> Sign up at <a href="https://claude.ai" target="_blank">claude.ai</a> and <a href="https://colab.research.google.com" target="_blank">colab.research.google.com</a></li>
+                    <li><strong>Open two tabs:</strong> One for Claude.ai (AI help), one for Colab (code)</li>
+                    <li><strong>Start coding:</strong> Ask Claude for help, copy code to Colab, run and test</li>
+                </ol>
+            </div>
 
-            <p>
-                You can name your directory whatever makes sense for your project. For example, if you are building the tic-tac-toe game, you might use <code>mkdir tic-tac-toe-game</code>. The important thing is to have a dedicated space where Claude Code can create and modify files without affecting other parts of your system.
-            </p>
-        </section>
+            <section>
+                <h2>What You Need</h2>
+                <p>
+                    Just a web browser and internet connection. No installation required.
+                </p>
+                <ul>
+                    <li><strong>Claude.ai:</strong> Free AI assistant for coding help and explanations</li>
+                    <li><strong>Google Colab:</strong> Free cloud-based Python environment</li>
+                    <li><strong>Browser:</strong> Chrome, Firefox, Safari, or Edge</li>
+                </ul>
+            </section>
 
-        <section id="first-session">
-            <h2>Starting Your First Claude Code Session</h2>
-            <p>
-                With your project directory created and your terminal in that directory, start Claude Code by simply running:
-            </p>
+            <section>
+                <h2>Step 1: Set Up Claude.ai</h2>
 
-            <pre><code>claude-code</code></pre>
+                <h3>Create Your Account</h3>
+                <p>
+                    Go to <a href="https://claude.ai" target="_blank">claude.ai</a> and sign up using your email or Google account. Verify your email if required.
+                </p>
 
-            <p>
-                After a brief loading period, you will see a prompt where you can begin typing. This is where you communicate with Claude, asking questions, requesting code, or seeking explanations. The interaction is conversational - you type a request, Claude responds, and you can follow up with additional questions or refinements.
-            </p>
+                <h3>Test It Out</h3>
+                <p>
+                    Try asking: <em>"Can you explain what a Python function is in simple terms?"</em>
+                </p>
+                <p>
+                    Claude will respond with an explanation. Use the copy button on code blocks to easily copy code.
+                </p>
+            </section>
 
-            <p>
-                Unlike some command-line tools where you must remember specific commands and flags, Claude Code understands natural language. You can ask questions the same way you would ask a human tutor or pair programmer. The tool maintains context throughout your session, so you can refer back to previous parts of the conversation.
-            </p>
-        </section>
+            <section>
+                <h2>Step 2: Set Up Google Colab</h2>
 
-        <section id="first-program">
-            <h2>Your First Interaction: A Simple Program</h2>
-            <p>
-                To get comfortable with Claude Code before starting your main project, create a simple program. This helps you understand the workflow without the pressure of building something complex. At the Claude Code prompt, type the following request:
-            </p>
+                <h3>Access Colab</h3>
+                <p>
+                    Go to <a href="https://colab.research.google.com" target="_blank">colab.research.google.com</a> and sign in with a Google account.
+                </p>
 
-            <pre><code>Create a simple Python script called hello.py that asks for my name and then greets me.</code></pre>
+                <h3>Understanding Notebooks</h3>
+                <p>
+                    Colab uses <strong>notebooks</strong> with cells that contain either:
+                </p>
+                <ul>
+                    <li><strong>Code cells:</strong> Run Python code, see results instantly</li>
+                    <li><strong>Text cells:</strong> Add notes and explanations</li>
+                </ul>
 
-            <p>
-                Claude will respond by creating the file and showing you the code it wrote. The tool not only generates code but also explains what it is doing. Read through Claude's response carefully. You will see that it likely created a file with something like this:
-            </p>
+                <h3>Open a Starter Notebook</h3>
+                <p>
+                    Each project page has an "Open in Colab" link that opens the starter code directly. Or manually open from GitHub:
+                </p>
+                <ol>
+                    <li>File → Open Notebook → GitHub tab</li>
+                    <li>Enter: <code>deweydex/2plus1Coding</code></li>
+                    <li>Open a file from <code>colab-notebooks</code> folder</li>
+                </ol>
 
-            <pre><code>name = input("What is your name? ")
-print(f"Hello, {name}! Nice to meet you.")</code></pre>
+                <h3>Run Your First Cell</h3>
+                <p>
+                    Click the play button or press <kbd>Shift+Enter</kbd> to run a cell. Output appears below the cell.
+                </p>
+            </section>
 
-            <p>
-                Now test the program by running it. In your terminal (you may need to open a new terminal window or exit Claude Code temporarily), run:
-            </p>
+            <section>
+                <h2>Step 3: The Two-Tab Workflow</h2>
 
-            <pre><code>python hello.py</code></pre>
+                <h3>How It Works</h3>
+                <ol>
+                    <li><strong>In Colab:</strong> Run starter code, identify next feature to add</li>
+                    <li><strong>Switch to Claude:</strong> Paste current code, describe what you want</li>
+                    <li><strong>Get help:</strong> Claude suggests code or explains concepts</li>
+                    <li><strong>Back to Colab:</strong> Copy improved code, test it</li>
+                    <li><strong>Repeat:</strong> Add one feature at a time</li>
+                </ol>
 
-            <p>
-                The program should prompt you for your name and then greet you. This simple interaction demonstrates the complete cycle: requesting code from Claude, receiving and reviewing the code, and testing it to ensure it works as expected.
-            </p>
-        </section>
+                <div class="note">
+                    <strong>Key Principle:</strong> Work incrementally. Add one thing, test it, understand it, then add the next thing.
+                </div>
+            </section>
 
-        <section id="workflow">
-            <h2>Understanding the Claude Code Workflow</h2>
-            <p>
-                The workflow you just experienced is the foundation of working with Claude Code. You make a request in natural language, Claude generates or modifies code, you review and test the code, and then you iterate with follow-up requests. This cycle repeats throughout your development session.
-            </p>
+            <section>
+                <h2>Tips for Success</h2>
+                <ul>
+                    <li><strong>Save frequently:</strong> Colab auto-saves, but manual saves (Ctrl+S) provide peace of mind</li>
+                    <li><strong>Keep both tabs open:</strong> Side-by-side if you have screen space</li>
+                    <li><strong>Ask for explanations:</strong> Understanding <em>why</em> code works is more valuable than just having code</li>
+                    <li><strong>Run cells in order:</strong> If code doesn't work, try Runtime → Restart and run all</li>
+                </ul>
+            </section>
 
-            <p>
-                An important principle to understand is that Claude Code operates on your actual files. When Claude creates or modifies a file, those changes are real and permanent. This is different from some AI tools that only show you code suggestions that you must manually copy. Claude Code directly interacts with your file system, which makes development faster but also means you should be thoughtful about reviewing changes before accepting them.
-            </p>
+            <section>
+                <h2>Troubleshooting</h2>
 
-            <p>
-                The tool maintains context throughout your session. If you create a file and then ask Claude to modify it later, Claude remembers the file's contents and structure. This allows you to have ongoing conversations about your code rather than repeating context in every request. However, this context is session-specific. When you exit Claude Code and start a new session, you begin with a fresh context.
-            </p>
-        </section>
+                <h3>Runtime Disconnects</h3>
+                <p>
+                    If Colab disconnects, click "Reconnect" and run Runtime → Run all to restore your state.
+                </p>
 
-        <section id="follow-up">
-            <h2>Practicing Follow-Up Interactions</h2>
-            <p>
-                With your <code>hello.py</code> file still open in Claude Code, try a follow-up request to practice iterating on existing code. Ask Claude something like:
-            </p>
+                <h3>Rate Limits</h3>
+                <p>
+                    If Claude.ai shows rate limits, wait before continuing. Taking time to think through questions helps you stay within limits.
+                </p>
 
-            <pre><code>Can you modify hello.py to also ask for my age and tell me what year I was born?</code></pre>
+                <h3>Code Errors</h3>
+                <p>
+                    Verify all cells ran in order (top to bottom). When in doubt, restart runtime and run all cells.
+                </p>
+            </section>
 
-            <p>
-                Claude will update the file with the new functionality. Look at the modified code and think about how it works. If anything is unclear, ask Claude to explain it. For example, you might type:
-            </p>
+            <section>
+                <h2>Next Steps</h2>
+                <p>
+                    Ready to start? Choose a <a href="projects.html">project</a> and begin building. Review the <a href="prompting-guide.html">Prompting Guide</a> to learn effective strategies for working with AI.
+                </p>
+            </section>
+        </div>
 
-            <pre><code>Can you explain how the age calculation works in this code?</code></pre>
+        <!-- DESKTOP CONTENT -->
+        <div id="desktop-content" class="version-content">
 
-            <p>
-                This back-and-forth interaction is where real learning happens. Do not simply accept code without understanding it. Ask questions, request explanations, and make sure each piece makes sense before moving on.
-            </p>
-        </section>
+            <div class="callout" style="background: var(--color-tertiary); border-left: 4px solid var(--color-petrol);">
+                <h3>Quick Start (Desktop)</h3>
+                <ol style="margin: 0; padding-left: 1.5rem;">
+                    <li><strong>Install:</strong> <code>npm install -g claude-code</code></li>
+                    <li><strong>Navigate:</strong> <code>cd your-project-folder</code></li>
+                    <li><strong>Run:</strong> <code>claude-code</code></li>
+                    <li><strong>Start coding:</strong> Ask Claude for help in natural language</li>
+                </ol>
+            </div>
 
-        <section id="key-commands">
-            <h2>Key Commands and Interactions</h2>
-            <p>
-                While Claude Code understands natural language, certain phrases and patterns are particularly effective. Here are some common types of requests you will use frequently:
-            </p>
+            <section>
+                <h2>Prerequisites</h2>
+                <p>
+                    Before installing Claude Code, ensure you have:
+                </p>
+                <ul>
+                    <li><strong>Python 3.8+:</strong> Check with <code>python --version</code> or <code>python3 --version</code></li>
+                    <li><strong>Node.js and npm:</strong> Download from <a href="https://nodejs.org/">nodejs.org</a></li>
+                    <li><strong>Text editor:</strong> VS Code, Atom, Sublime Text, or similar</li>
+                    <li><strong>Anthropic API key:</strong> Create account at <a href="https://console.anthropic.com/">console.anthropic.com</a></li>
+                </ul>
+            </section>
 
-            <p>
-                <strong>Creating files:</strong> "Create a new Python file called game.py" or "Make a file named utils.py with helper functions."
-            </p>
+            <section>
+                <h2>Installation</h2>
 
-            <p>
-                <strong>Reading files:</strong> "Show me what's in game.py" or "What does the calculate function do in utils.py?"
-            </p>
+                <h3>Install Claude Code</h3>
+                <pre><code>npm install -g claude-code</code></pre>
 
-            <p>
-                <strong>Modifying code:</strong> "Add error handling to the input function" or "Refactor the board display to be more readable."
-            </p>
+                <div class="note">
+                    <strong>Permission errors?</strong> On macOS/Linux, you may need <code>sudo</code>, but it's better to fix npm permissions first.
+                </div>
 
-            <p>
-                <strong>Running code:</strong> "Run game.py" or "Test this code with input of 5."
-            </p>
+                <h3>Verify Installation</h3>
+                <pre><code>claude-code --version</code></pre>
+                <p>
+                    You should see a version number. If not, the installation didn't complete successfully.
+                </p>
+            </section>
 
-            <p>
-                <strong>Debugging:</strong> "I'm getting an error that says IndexError on line 12, can you help?" or "This function isn't returning what I expected when I pass it an empty list."
-            </p>
+            <section>
+                <h2>First-Time Setup</h2>
 
-            <p>
-                <strong>Explaining code:</strong> "Explain what this function does line by line" or "Why did you use a dictionary here instead of a list?"
-            </p>
+                <h3>API Key Configuration</h3>
+                <p>
+                    The first time you run Claude Code, you'll be prompted for your Anthropic API key. This key is stored securely on your machine.
+                </p>
 
-            <p>
-                The more specific your requests, the better Claude's responses will be. Rather than "make it better," try "add input validation to ensure the user enters a number between 1 and 9."
-            </p>
-        </section>
+                <div class="note">
+                    <strong>Treat your API key like a password.</strong> Don't share it publicly or commit it to version control.
+                </div>
+            </section>
 
-        <section id="exiting">
-            <h2>Exiting and Resuming</h2>
-            <p>
-                When you want to exit Claude Code, you can type <code>exit</code> or press <code>Ctrl+C</code> (or <code>Cmd+C</code> on Mac). Your files remain in your project directory, so you can return to them anytime. To resume working on your project, simply navigate back to the project directory in your terminal and run <code>claude-code</code> again.
-            </p>
+            <section>
+                <h2>Your First Session</h2>
 
-            <p>
-                Remember that each Claude Code session starts fresh in terms of conversation context, but your files persist. When you restart, you can ask Claude to review or modify existing files by referring to them by name.
-            </p>
-        </section>
+                <h3>Create a Project Directory</h3>
+                <pre><code>mkdir my-project
+cd my-project</code></pre>
 
-        <section id="troubleshooting">
-            <h2>Troubleshooting Common Issues</h2>
+                <h3>Start Claude Code</h3>
+                <pre><code>claude-code</code></pre>
 
-            <h3>Claude Code command not found</h3>
-            <p>
-                If your terminal says it cannot find the <code>claude-code</code> command, the installation may not have completed successfully or your PATH environment variable is not configured correctly. Try closing and reopening your terminal first, as PATH changes sometimes require a fresh terminal session. If that does not work, reinstall Claude Code using the installation command above.
-            </p>
+                <h3>Try Your First Request</h3>
+                <p>
+                    At the prompt, type:
+                </p>
+                <pre><code>Create a simple Python script called hello.py that asks for my name and greets me.</code></pre>
 
-            <h3>Authentication errors</h3>
-            <p>
-                If Claude Code cannot authenticate, verify that your API key is correct and that you have an active internet connection. Claude Code requires network access to communicate with Anthropic's servers. You can reset your configuration and re-enter your API key by deleting the configuration file (location varies by operating system) and restarting Claude Code.
-            </p>
+                <p>
+                    Claude will create the file and show you the code. Test it:
+                </p>
+                <pre><code>python hello.py</code></pre>
+            </section>
 
-            <h3>Python version conflicts</h3>
-            <p>
-                Some systems have multiple versions of Python installed. If running <code>python</code> does not work or uses Python 2, try <code>python3</code> instead. All projects in this activity require Python 3.8 or higher.
-            </p>
+            <section>
+                <h2>How It Works</h2>
 
-            <h3>Permission errors when creating files</h3>
-            <p>
-                Make sure you are working in a directory where you have write permissions. Your home directory or a dedicated projects folder are good choices. Avoid trying to create files in system directories or protected locations.
-            </p>
-        </section>
+                <h3>The Workflow</h3>
+                <ol>
+                    <li><strong>Request:</strong> Describe what you want in natural language</li>
+                    <li><strong>Review:</strong> Claude generates code and explains it</li>
+                    <li><strong>Test:</strong> Run the code to verify it works</li>
+                    <li><strong>Iterate:</strong> Ask follow-up questions or request changes</li>
+                </ol>
 
-        <section id="next-steps">
-            <h2>Next Steps</h2>
-            <p>
-                With Claude Code installed and working, you are ready to begin your main project. Before diving in, take time to read the <a href="prompting-guide.html">Prompting Guide</a>, which explains strategies for effective communication with AI coding assistants. Understanding these principles will help you work more efficiently and learn more effectively.
-            </p>
+                <div class="note">
+                    <strong>Important:</strong> Claude Code operates on your actual files. Changes are real and permanent.
+                </div>
+            </section>
 
-            <p>
-                When you are ready, choose a project from the home page, download the starter code, and begin the planning phase. Remember that the goal is learning through building. Take your time, ask questions, and focus on understanding each step rather than rushing to complete the project.
-            </p>
-        </section>
+            <section>
+                <h2>Key Commands</h2>
+                <p>
+                    Effective patterns for working with Claude Code:
+                </p>
+                <ul>
+                    <li><strong>Creating files:</strong> "Create a file called game.py with..."</li>
+                    <li><strong>Modifying code:</strong> "Add error handling to the input function"</li>
+                    <li><strong>Understanding:</strong> "Explain what this function does line by line"</li>
+                    <li><strong>Debugging:</strong> "I'm getting an IndexError on line 12, can you help?"</li>
+                    <li><strong>Refactoring:</strong> "Make this code more readable"</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Troubleshooting</h2>
+
+                <h3>Command Not Found</h3>
+                <p>
+                    Close and reopen your terminal. If that doesn't work, reinstall Claude Code.
+                </p>
+
+                <h3>Authentication Errors</h3>
+                <p>
+                    Verify your API key is correct and you have internet connection.
+                </p>
+
+                <h3>Python Version Conflicts</h3>
+                <p>
+                    If <code>python</code> doesn't work, try <code>python3</code> instead.
+                </p>
+            </section>
+
+            <section>
+                <h2>Next Steps</h2>
+                <p>
+                    Review the <a href="prompting-guide.html">Prompting Guide</a> for effective strategies, then choose a <a href="projects.html">project</a> and start building.
+                </p>
+            </section>
+        </div>
+
+        <script>
+            function showVersion(version) {
+                // Update content visibility
+                document.querySelectorAll('.version-content').forEach(el => {
+                    el.classList.remove('active');
+                });
+                document.querySelectorAll('.version-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                document.getElementById(version + '-content').classList.add('active');
+                document.getElementById(version + '-btn').classList.add('active');
+            }
+        </script>
     </main>
 
     <footer>
