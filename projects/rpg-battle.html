@@ -67,7 +67,24 @@
                 Random number generation plays an important role in creating varied, interesting battles. Pure deterministic combat where the same actions always produce identical results becomes predictable and boring. Adding controlled randomness keeps battles engaging while still being fair. Learning to use randomness appropriately—enough to create variety but not so much that outcomes feel arbitrary—is a valuable skill that applies beyond games to simulations, testing, and many other domains.
             </p>
         </section>
+        <!-- Version Selector -->
+        <div class="version-selector">
+            <h2>Choose Your Workflow</h2>
+            <div class="version-toggle-buttons">
+                <button class="version-btn active" onclick="showVersion('web')" id="web-btn">
+                    🌐 Web-Based
+                    <span class="btn-label">Recommended • No Install</span>
+                </button>
+                <button class="version-btn" onclick="showVersion('desktop')" id="desktop-btn">
+                    💻 Desktop
+                    <span class="btn-label">Claude Code CLI</span>
+                </button>
+            </section>
+        </div>
 
+
+
+        <div id="desktop-content" class="version-content">
         <section>
             <h2>Getting the Starter Code</h2>
             <p>
@@ -87,6 +104,9 @@
                 <strong>First Step:</strong> After downloading, run <code>python rpg_beginner.py</code> (or <code>rpg_advanced.py</code>). The demonstration shows you character creation and stat display. Pay attention to how the health bar visualizes HP percentage and how character attributes are stored in the dictionary structure.
             </div>
         </section>
+        </div>
+
+        <div id="web-content" class="version-content active">
 
         <section>
             <h2>Web-Based Workflow (Alternative)</h2>
@@ -143,7 +163,8 @@
             </div>
         </section>
 
-        <section>
+                </div>
+<section>
             <h2>Phase 1: Planning Your Build (15 minutes)</h2>
             <p>
                 Before writing combat code, think carefully about how battles should flow and what information needs to be tracked. A turn-based battle has clear structure: display current state, get player choice, execute player action, check for victory, execute enemy action, check for victory, repeat. This structure provides a framework to build upon, but many details need to be decided.
@@ -357,5 +378,24 @@
         <p>Coding with AI - Learning Activity | QQI Level 5/6 Computer Science</p>
         <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
     </footer>
+
+    <script>
+        function showVersion(version) {
+            // Hide all content
+            document.querySelectorAll('.version-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.version-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected content
+            document.getElementById(version + '-content').classList.add('active');
+            document.getElementById(version + '-btn').classList.add('active');
+        }
+    </script>
+
 </body>
 </html>

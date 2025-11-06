@@ -67,7 +67,24 @@
                 You will encounter the fundamental challenges of machine learning: overfitting, where models memorize training data but fail to generalize; underfitting, where models fail to capture important patterns; and the bias-variance tradeoff that governs this balance. These concepts are not merely theoretical; you will see them manifested in how your models perform. This concrete experience with fundamental ML concepts provides intuition that abstractions alone cannot convey.
             </p>
         </section>
+        <!-- Version Selector -->
+        <div class="version-selector">
+            <h2>Choose Your Workflow</h2>
+            <div class="version-toggle-buttons">
+                <button class="version-btn active" onclick="showVersion('web')" id="web-btn">
+                    🌐 Web-Based
+                    <span class="btn-label">Recommended • No Install</span>
+                </button>
+                <button class="version-btn" onclick="showVersion('desktop')" id="desktop-btn">
+                    💻 Desktop
+                    <span class="btn-label">Claude Code CLI</span>
+                </button>
+            </section>
+        </div>
 
+
+
+        <div id="desktop-content" class="version-content">
         <section>
             <h2>Getting the Starter Code</h2>
             <p>
@@ -91,6 +108,9 @@
                 <strong>First Steps:</strong> Install required libraries with <code>pip install scikit-learn pandas matplotlib</code>, then run <code>python ml_beginner.py</code> (or <code>ml_advanced.py</code>). The program displays dataset information, showing you the structure of data that machine learning models learn from.
             </div>
         </section>
+        </div>
+
+        <div id="web-content" class="version-content active">
 
         <section>
             <h2>Web-Based Workflow (Alternative)</h2>
@@ -147,7 +167,8 @@
             </div>
         </section>
 
-        <section>
+                </div>
+<section>
             <h2>Phase 1: Understanding the Problem (15 minutes)</h2>
             <p>
                 Before training models, examine the dataset carefully to understand what problem you are solving. The Iris dataset contains measurements of sepal length, sepal width, petal length, and petal width for 150 iris flowers from three species. The task is classification: given measurements of a flower, predict its species. This is supervised learning because you have examples where the correct answer (species) is known, and the model learns from these examples.
@@ -362,5 +383,24 @@
         <p>Coding with AI - Learning Activity | QQI Level 5/6 Computer Science</p>
         <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
     </footer>
+
+    <script>
+        function showVersion(version) {
+            // Hide all content
+            document.querySelectorAll('.version-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.version-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected content
+            document.getElementById(version + '-content').classList.add('active');
+            document.getElementById(version + '-btn').classList.add('active');
+        }
+    </script>
+
 </body>
 </html>
