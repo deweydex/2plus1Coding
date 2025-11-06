@@ -19,16 +19,7 @@
                         <a href="../getting-started.html">Desktop Install</a>
                     </div>
                 </li>
-                <li class="dropdown">
-                    <a href="#projects">Projects ▾</a>
-                    <div class="dropdown-content">
-                        <a href="tic-tac-toe.html">Tic-Tac-Toe</a>
-                        <a href="word-guessing.html">Word Guessing</a>
-                        <a href="rpg-battle.html">RPG Battle</a>
-                        <a href="image-processing.html">Image Processing</a>
-                        <a href="machine-learning.html">Machine Learning</a>
-                    </div>
-                </li>
+                <li><a href="../projects.html">Projects</a></li>
                 <li><a href="../prompting-guide.html">Prompting Guide</a></li>
                 <li><a href="../for-teachers.html">For Teachers</a></li>
             </ul>
@@ -76,7 +67,24 @@
                 The creative aspects of this project teach valuable lessons about user experience. How do you make the game engaging? Clear feedback after each guess helps players understand what is happening. Visual elements like ASCII art make abstract game state concrete and memorable. Appropriate difficulty balancing keeps the game challenging but not frustrating. These considerations go beyond just making code work to thinking about how people interact with your software.
             </p>
         </section>
+        <!-- Version Selector -->
+        <div class="version-selector">
+            <h2>Choose Your Workflow</h2>
+            <div class="version-toggle-buttons">
+                <button class="version-btn active" onclick="showVersion('web')" id="web-btn">
+                    🌐 Web-Based
+                    <span class="btn-label">Recommended • No Install</span>
+                </button>
+                <button class="version-btn" onclick="showVersion('desktop')" id="desktop-btn">
+                    💻 Desktop
+                    <span class="btn-label">Claude Code CLI</span>
+                </button>
+            </section>
+        </div>
 
+
+
+        <div id="desktop-content" class="version-content">
         <section>
             <h2>Getting the Starter Code</h2>
             <p>
@@ -96,6 +104,9 @@
                 <strong>First Step:</strong> After downloading, navigate to your project directory and run <code>python wordguess_beginner.py</code> (or <code>wordguess_advanced.py</code>). The demonstration shows you the word display mechanism in action, helping you understand the foundation you are building upon.
             </div>
         </section>
+        </div>
+
+        <div id="web-content" class="version-content active">
 
         <section>
             <h2>Web-Based Workflow (Alternative)</h2>
@@ -152,7 +163,8 @@
             </div>
         </section>
 
-        <section>
+                </div>
+<section>
             <h2>Phase 1: Planning Your Build (15 minutes)</h2>
             <p>
                 Before adding features, examine the starter code carefully and plan your approach. The starter code shows you how words are selected and displayed, but the game logic is your responsibility. Think through what needs to happen on each turn: the player guesses a letter, you check if it is in the word, you update the display, you check if the player has won or lost, and you either continue or end the game.
@@ -313,6 +325,42 @@
         </section>
 
         <section>
+            <h2>Creative Directions and Extensions</h2>
+            <p>
+                With a working word guessing game, you have a foundation to explore many interesting directions. These extensions help you practice different programming concepts while making the game more engaging.
+            </p>
+
+            <h3>Ideas to Explore</h3>
+            <p>
+                <strong>Themed Word Lists:</strong> Create categories like movies, programming terms, countries, or animals, and let players choose a theme before playing.
+            </p>
+
+            <p>
+                <strong>Difficulty Levels:</strong> Implement easy (short words), medium, and hard (long words) modes, adjusting the number of allowed guesses based on difficulty.
+            </p>
+
+            <p>
+                <strong>Hint System:</strong> Add hints that reveal vowels, give definitions, or show the category. Limit hints to make them strategic choices rather than automatic reveals.
+            </p>
+
+            <p>
+                <strong>Multiplayer Mode:</strong> Allow players to take turns choosing words for each other to guess, tracking who wins more rounds.
+            </p>
+
+            <p>
+                <strong>Progressive ASCII Art:</strong> Design custom hangman-style drawings that reveal progressively with each wrong guess, or create thematic illustrations.
+            </p>
+
+            <p>
+                <strong>Dictionary Integration:</strong> Use online APIs to check if guessed words are valid, or display definitions when players complete a word.
+            </p>
+
+            <p>
+                Pick extensions that interest you and align with concepts you want to learn. Each extension teaches different programming patterns - file I/O for word lists, APIs for dictionary integration, data structures for multiplayer scoring.
+            </p>
+        </section>
+
+        <section>
             <h2>Reflection and Extension</h2>
             <p>
                 After completing your word guessing game, reflect on what you learned about state management and string manipulation. These concepts transfer to many other programming contexts. State management is fundamental to almost any program that does more than simple calculations. String manipulation is essential for any text-based interaction.
@@ -358,5 +406,24 @@
         <p>Coding with AI - Learning Activity | QQI Level 5/6 Computer Science</p>
         <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
     </footer>
+
+    <script>
+        function showVersion(version) {
+            // Hide all content
+            document.querySelectorAll('.version-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.version-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected content
+            document.getElementById(version + '-content').classList.add('active');
+            document.getElementById(version + '-btn').classList.add('active');
+        }
+    </script>
+
 </body>
 </html>

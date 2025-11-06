@@ -19,16 +19,7 @@
                         <a href="../getting-started.html">Desktop Install</a>
                     </div>
                 </li>
-                <li class="dropdown">
-                    <a href="#projects">Projects ▾</a>
-                    <div class="dropdown-content">
-                        <a href="tic-tac-toe.html">Tic-Tac-Toe</a>
-                        <a href="word-guessing.html">Word Guessing</a>
-                        <a href="rpg-battle.html">RPG Battle</a>
-                        <a href="image-processing.html">Image Processing</a>
-                        <a href="machine-learning.html">Machine Learning</a>
-                    </div>
-                </li>
+                <li><a href="../projects.html">Projects</a></li>
                 <li><a href="../prompting-guide.html">Prompting Guide</a></li>
                 <li><a href="../for-teachers.html">For Teachers</a></li>
             </ul>
@@ -76,7 +67,24 @@
                 Random number generation plays an important role in creating varied, interesting battles. Pure deterministic combat where the same actions always produce identical results becomes predictable and boring. Adding controlled randomness keeps battles engaging while still being fair. Learning to use randomness appropriately—enough to create variety but not so much that outcomes feel arbitrary—is a valuable skill that applies beyond games to simulations, testing, and many other domains.
             </p>
         </section>
+        <!-- Version Selector -->
+        <div class="version-selector">
+            <h2>Choose Your Workflow</h2>
+            <div class="version-toggle-buttons">
+                <button class="version-btn active" onclick="showVersion('web')" id="web-btn">
+                    🌐 Web-Based
+                    <span class="btn-label">Recommended • No Install</span>
+                </button>
+                <button class="version-btn" onclick="showVersion('desktop')" id="desktop-btn">
+                    💻 Desktop
+                    <span class="btn-label">Claude Code CLI</span>
+                </button>
+            </section>
+        </div>
 
+
+
+        <div id="desktop-content" class="version-content">
         <section>
             <h2>Getting the Starter Code</h2>
             <p>
@@ -96,6 +104,9 @@
                 <strong>First Step:</strong> After downloading, run <code>python rpg_beginner.py</code> (or <code>rpg_advanced.py</code>). The demonstration shows you character creation and stat display. Pay attention to how the health bar visualizes HP percentage and how character attributes are stored in the dictionary structure.
             </div>
         </section>
+        </div>
+
+        <div id="web-content" class="version-content active">
 
         <section>
             <h2>Web-Based Workflow (Alternative)</h2>
@@ -152,7 +163,8 @@
             </div>
         </section>
 
-        <section>
+                </div>
+<section>
             <h2>Phase 1: Planning Your Build (15 minutes)</h2>
             <p>
                 Before writing combat code, think carefully about how battles should flow and what information needs to be tracked. A turn-based battle has clear structure: display current state, get player choice, execute player action, check for victory, execute enemy action, check for victory, repeat. This structure provides a framework to build upon, but many details need to be decided.
@@ -317,6 +329,46 @@
         </section>
 
         <section>
+            <h2>Creative Directions and Extensions</h2>
+            <p>
+                Your battle system provides a rich foundation for exploring game design, AI programming, and complex data structures. These extensions let you dive deeper into areas that interest you.
+            </p>
+
+            <h3>Ideas to Explore</h3>
+            <p>
+                <strong>Character Classes:</strong> Design unique classes (warrior, mage, rogue) with distinct stat distributions, special abilities, and playstyles.
+            </p>
+
+            <p>
+                <strong>Equipment and Inventory:</strong> Add weapons, armor, and items that modify stats or grant abilities. Implement an inventory system where players find and equip gear.
+            </p>
+
+            <p>
+                <strong>Status Effects:</strong> Implement poison (damage over time), stun (skip turns), buffs (temporary stat boosts), or debuffs (weakened defense).
+            </p>
+
+            <p>
+                <strong>Enemy AI:</strong> Create different AI strategies - aggressive enemies that always attack, defensive enemies that heal when low on health, or tactical enemies that target the weakest party member.
+            </p>
+
+            <p>
+                <strong>Party System:</strong> Manage multiple player characters, allowing tactical decisions about which character acts and coordinating abilities between party members.
+            </p>
+
+            <p>
+                <strong>Experience and Leveling:</strong> Award experience points for victories, implement leveling up with stat increases, and create a sense of progression across multiple battles.
+            </p>
+
+            <p>
+                <strong>Story Campaign:</strong> Design a sequence of battles with increasing difficulty, narrative context between fights, and boss battles with unique mechanics.
+            </p>
+
+            <p>
+                Focus on extensions that teach you new concepts. Each addition - from AI decision-making to inventory management to progression systems - represents real game development challenges that apply beyond this project.
+            </p>
+        </section>
+
+        <section>
             <h2>Reflection and Extension</h2>
             <p>
                 After completing your battle system, reflect on what you learned about managing complex, interacting systems. This kind of systems thinking applies far beyond games to any program with multiple components that must work together coherently. Consider how you organized your code to handle this complexity. Did you use functions to separate concerns? Did you keep related data together? Did you make it easy to add new features without rewriting existing code?
@@ -366,5 +418,24 @@
         <p>Coding with AI - Learning Activity | QQI Level 5/6 Computer Science</p>
         <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
     </footer>
+
+    <script>
+        function showVersion(version) {
+            // Hide all content
+            document.querySelectorAll('.version-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.version-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected content
+            document.getElementById(version + '-content').classList.add('active');
+            document.getElementById(version + '-btn').classList.add('active');
+        }
+    </script>
+
 </body>
 </html>

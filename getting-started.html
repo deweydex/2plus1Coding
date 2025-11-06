@@ -19,16 +19,7 @@
                         <a href="getting-started.html">Desktop Install</a>
                     </div>
                 </li>
-                <li class="dropdown">
-                    <a href="#projects">Projects ▾</a>
-                    <div class="dropdown-content">
-                        <a href="projects/tic-tac-toe.html">Tic-Tac-Toe</a>
-                        <a href="projects/word-guessing.html">Word Guessing</a>
-                        <a href="projects/rpg-battle.html">RPG Battle</a>
-                        <a href="projects/image-processing.html">Image Processing</a>
-                        <a href="projects/machine-learning.html">Machine Learning</a>
-                    </div>
-                </li>
+                <li><a href="projects.html">Projects</a></li>
                 <li><a href="prompting-guide.html">Prompting Guide</a></li>
                 <li><a href="for-teachers.html">For Teachers</a></li>
             </ul>
@@ -42,7 +33,25 @@
             This page walks you through setting up Claude Code on your machine and completing your first interaction with the tool. Even if you are comfortable with command-line interfaces, take time to work through these steps to understand the specific workflow of Claude Code.
         </div>
 
-        <section>
+        <div class="table-of-contents">
+            <h2>On This Page</h2>
+            <ul>
+                <li><a href="#prerequisites">Prerequisites</a></li>
+                <li><a href="#installing">Installing Claude Code</a></li>
+                <li><a href="#configuration">First-Time Configuration</a></li>
+                <li><a href="#project-directory">Creating Your Project Directory</a></li>
+                <li><a href="#first-session">Starting Your First Claude Code Session</a></li>
+                <li><a href="#first-program">Your First Interaction: A Simple Program</a></li>
+                <li><a href="#workflow">Understanding the Claude Code Workflow</a></li>
+                <li><a href="#follow-up">Practicing Follow-Up Interactions</a></li>
+                <li><a href="#key-commands">Key Commands and Interactions</a></li>
+                <li><a href="#exiting">Exiting and Resuming</a></li>
+                <li><a href="#troubleshooting">Troubleshooting Common Issues</a></li>
+                <li><a href="#next-steps">Next Steps</a></li>
+            </ul>
+        </div>
+
+        <section id="prerequisites">
             <h2>Prerequisites</h2>
             <p>
                 Before installing Claude Code, you need to ensure your development environment has the necessary foundations. You will need Python installed on your system, as all the projects in this activity use Python. Most modern computers have Python pre-installed, but you may need to install or update it. You can verify whether Python is installed by opening a terminal or command prompt and typing <code>python --version</code> or <code>python3 --version</code>. You should see a version number of 3.8 or higher.
@@ -57,7 +66,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="installing">
             <h2>Installing Claude Code</h2>
             <p>
                 Claude Code is installed via npm, the Node Package Manager. If you do not have Node.js and npm installed, you will need to install them first. Visit <a href="https://nodejs.org/">nodejs.org</a> and download the LTS version for your operating system. The installer includes both Node.js and npm.
@@ -84,7 +93,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="configuration">
             <h2>First-Time Configuration</h2>
             <p>
                 The first time you run Claude Code, you will need to authenticate with Anthropic's servers. Claude Code requires an Anthropic API key, which connects your local tool to Claude's AI models running in the cloud. If you are participating in a workshop, your instructor may provide you with an API key or configure this for you. If you are setting this up independently, you will need to create an account at <a href="https://console.anthropic.com/">console.anthropic.com</a> and generate an API key.
@@ -99,7 +108,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="project-directory">
             <h2>Creating Your Project Directory</h2>
             <p>
                 Before starting Claude Code, create a dedicated directory for your project. This keeps your files organized and makes it easier to manage your work. Open a terminal and navigate to where you want to store your project, then create and enter a new directory:
@@ -113,7 +122,7 @@ cd my-claude-project</code></pre>
             </p>
         </section>
 
-        <section>
+        <section id="first-session">
             <h2>Starting Your First Claude Code Session</h2>
             <p>
                 With your project directory created and your terminal in that directory, start Claude Code by simply running:
@@ -130,7 +139,7 @@ cd my-claude-project</code></pre>
             </p>
         </section>
 
-        <section>
+        <section id="first-program">
             <h2>Your First Interaction: A Simple Program</h2>
             <p>
                 To get comfortable with Claude Code before starting your main project, create a simple program. This helps you understand the workflow without the pressure of building something complex. At the Claude Code prompt, type the following request:
@@ -156,7 +165,7 @@ print(f"Hello, {name}! Nice to meet you.")</code></pre>
             </p>
         </section>
 
-        <section>
+        <section id="workflow">
             <h2>Understanding the Claude Code Workflow</h2>
             <p>
                 The workflow you just experienced is the foundation of working with Claude Code. You make a request in natural language, Claude generates or modifies code, you review and test the code, and then you iterate with follow-up requests. This cycle repeats throughout your development session.
@@ -171,7 +180,7 @@ print(f"Hello, {name}! Nice to meet you.")</code></pre>
             </p>
         </section>
 
-        <section>
+        <section id="follow-up">
             <h2>Practicing Follow-Up Interactions</h2>
             <p>
                 With your <code>hello.py</code> file still open in Claude Code, try a follow-up request to practice iterating on existing code. Ask Claude something like:
@@ -190,7 +199,7 @@ print(f"Hello, {name}! Nice to meet you.")</code></pre>
             </p>
         </section>
 
-        <section>
+        <section id="key-commands">
             <h2>Key Commands and Interactions</h2>
             <p>
                 While Claude Code understands natural language, certain phrases and patterns are particularly effective. Here are some common types of requests you will use frequently:
@@ -225,7 +234,7 @@ print(f"Hello, {name}! Nice to meet you.")</code></pre>
             </p>
         </section>
 
-        <section>
+        <section id="exiting">
             <h2>Exiting and Resuming</h2>
             <p>
                 When you want to exit Claude Code, you can type <code>exit</code> or press <code>Ctrl+C</code> (or <code>Cmd+C</code> on Mac). Your files remain in your project directory, so you can return to them anytime. To resume working on your project, simply navigate back to the project directory in your terminal and run <code>claude-code</code> again.
@@ -236,7 +245,7 @@ print(f"Hello, {name}! Nice to meet you.")</code></pre>
             </p>
         </section>
 
-        <section>
+        <section id="troubleshooting">
             <h2>Troubleshooting Common Issues</h2>
 
             <h3>Claude Code command not found</h3>
@@ -260,7 +269,7 @@ print(f"Hello, {name}! Nice to meet you.")</code></pre>
             </p>
         </section>
 
-        <section>
+        <section id="next-steps">
             <h2>Next Steps</h2>
             <p>
                 With Claude Code installed and working, you are ready to begin your main project. Before diving in, take time to read the <a href="prompting-guide.html">Prompting Guide</a>, which explains strategies for effective communication with AI coding assistants. Understanding these principles will help you work more efficiently and learn more effectively.
