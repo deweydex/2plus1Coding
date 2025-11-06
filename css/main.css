@@ -9,6 +9,8 @@
   --color-petrol: #006A7C;
   --color-petrol-dark: #004d5a;
   --color-petrol-light: #008ca3;
+  --color-petrol-extra-light: #e6f4f7;
+  --color-petrol-lightest: #d9eef2;
   --color-orange: #CC5500;
   --color-orange-light: #e67300;
   --color-charcoal: #333333;
@@ -447,7 +449,7 @@ footer {
 
 /* ===== Version Toggle (Web vs Desktop) ===== */
 .version-selector {
-  background: linear-gradient(135deg, #e6f4f7 0%, #d9eef2 100%);
+  background: linear-gradient(135deg, var(--color-petrol-extra-light) 0%, var(--color-petrol-lightest) 100%);
   padding: var(--spacing-lg);
   border-radius: var(--border-radius);
   margin: var(--spacing-xl) 0;
