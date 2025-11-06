@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPG Battle Project - Claude Code Learning Activity</title>
+    <title>RPG Battle Project - Coding with AI</title>
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <a href="../index.html" class="site-title">Claude Code Learning Activity</a>
+            <a href="../index.html" class="site-title">Coding with AI - Learning Activity</a>
             <ul>
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../getting-started.html">Getting Started</a></li>
+                <li class="dropdown">
+                    <a href="#getting-started">Getting Started ▾</a>
+                    <div class="dropdown-content">
+                        <a href="../getting-started-web.html">Web-Based (Recommended)</a>
+                        <a href="../getting-started.html">Desktop Install</a>
+                    </div>
+                </li>
                 <li class="dropdown">
                     <a href="#projects">Projects ▾</a>
                     <div class="dropdown-content">
@@ -88,6 +94,61 @@
 
             <div class="note">
                 <strong>First Step:</strong> After downloading, run <code>python rpg_beginner.py</code> (or <code>rpg_advanced.py</code>). The demonstration shows you character creation and stat display. Pay attention to how the health bar visualizes HP percentage and how character attributes are stored in the dictionary structure.
+            </div>
+        </section>
+
+        <section>
+            <h2>Web-Based Workflow (Alternative)</h2>
+            <p>
+                If you prefer working entirely in your browser without installing Python locally, you can use Google Colab notebooks combined with Claude.ai for AI assistance. This approach requires no installation and works on any device with internet access. Google Colab provides a free Python environment that runs in the cloud, while Claude.ai offers conversational AI help through a web interface.
+            </p>
+
+            <p>
+                The web-based workflow uses two browser tabs working together. In one tab, you have Claude.ai open where you can ask questions, request code explanations, and get help solving problems. In the other tab, you have Google Colab where you write and run your actual code. You move between these tabs naturally: ask Claude for help, receive code or explanations, copy relevant code to Colab, test it, and return to Claude with follow-up questions or to report results.
+            </p>
+
+            <h3>Opening Your Colab Notebook</h3>
+            <p>
+                Google Colab notebooks for this project are hosted on GitHub and can be opened directly in Colab with a single click. Choose either the beginner or advanced version based on your experience level. The notebooks contain the same starter code as the downloadable Python files, but formatted as interactive cells that you can run individually.
+            </p>
+
+            <div style="display: flex; gap: 1rem; margin: 2rem 0; flex-wrap: wrap;">
+                <a href="https://colab.research.google.com/github/deweydex/2plus1Coding/blob/main/colab-notebooks/rpg_beginner.ipynb" class="btn" target="_blank">
+                    Open Beginner Notebook in Colab →
+                </a>
+                <a href="https://colab.research.google.com/github/deweydex/2plus1Coding/blob/main/colab-notebooks/rpg_advanced.ipynb" class="btn btn-secondary" target="_blank">
+                    Open Advanced Notebook in Colab →
+                </a>
+            </div>
+
+            <p>
+                When the notebook opens in Colab, you will see cells containing markdown explanations and Python code. Run the existing code cells to see what your starting point provides. In Colab, you run a cell by clicking the play button on the left side of the cell, or by selecting the cell and pressing Shift+Enter. The output appears directly below the cell, giving you immediate visual feedback about what the code does.
+            </p>
+
+            <h3>Working Between Claude.ai and Colab</h3>
+            <p>
+                Arrange your browser so you can easily switch between Claude.ai and Colab tabs, or use split-screen if your display is large enough. When you encounter a problem or want to add a feature, describe what you want to Claude.ai in the first tab. Be specific about your current code state and what you are trying to accomplish. Claude will respond with explanations, code suggestions, or questions to clarify your intent.
+            </p>
+
+            <p>
+                When Claude provides code, read through it first to understand what it does. Then copy the relevant portions and paste them into appropriate cells in your Colab notebook. You might add code to an existing cell or create new cells for new functionality. After pasting code, run the cell to test it. If it works as expected, you can proceed to the next feature. If it produces errors or unexpected behavior, return to Claude with specific information about what went wrong.
+            </p>
+
+            <p>
+                This iterative workflow of asking, implementing, testing, and refining mirrors how professional developers work with AI assistance tools. You maintain control over what code goes into your project while leveraging AI help for implementation details, debugging suggestions, and conceptual explanations. The back-and-forth develops your ability to communicate technical problems clearly and to critically evaluate AI-generated solutions.
+            </p>
+
+            <h3>Saving Your Work</h3>
+            <p>
+                Google Colab notebooks auto-save to your Google Drive periodically, but you should also save manually using File > Save from the Colab menu, especially before closing the tab. If you make a copy of the notebook to your own Drive (File > Save a copy in Drive), you create a personal version that you can modify without affecting the original. This personal copy persists across sessions, allowing you to leave and return to your work later.
+            </p>
+
+            <p>
+                When you finish working, you can download your completed notebook using File > Download > Download .ipynb to save it locally. You can also download just the Python code using File > Download > Download .py, which extracts code cells into a standalone Python file similar to the original starter code format. This flexibility allows you to work in Colab during development and export results in whatever format you need.
+            </p>
+
+            <div class="note">
+                <strong>New to this workflow?</strong> Review the <a href="../getting-started-web.html">Web-Based Getting Started Guide</a> for detailed setup instructions for Claude.ai and Google Colab, including screenshots and troubleshooting tips.
             </div>
         </section>
 
@@ -302,7 +363,7 @@
     </main>
 
     <footer>
-        <p>Claude Code Learning Activity | QQI Level 5/6 Computer Science</p>
+        <p>Coding with AI - Learning Activity | QQI Level 5/6 Computer Science</p>
         <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
     </footer>
 </body>

@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machine Learning Project - Claude Code Learning Activity</title>
+    <title>Machine Learning Project - Coding with AI</title>
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <a href="../index.html" class="site-title">Claude Code Learning Activity</a>
+            <a href="../index.html" class="site-title">Coding with AI - Learning Activity</a>
             <ul>
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../getting-started.html">Getting Started</a></li>
+                <li class="dropdown">
+                    <a href="#getting-started">Getting Started ▾</a>
+                    <div class="dropdown-content">
+                        <a href="../getting-started-web.html">Web-Based (Recommended)</a>
+                        <a href="../getting-started.html">Desktop Install</a>
+                    </div>
+                </li>
                 <li class="dropdown">
                     <a href="#projects">Projects ▾</a>
                     <div class="dropdown-content">
@@ -92,6 +98,61 @@
 
             <div class="note">
                 <strong>First Steps:</strong> Install required libraries with <code>pip install scikit-learn pandas matplotlib</code>, then run <code>python ml_beginner.py</code> (or <code>ml_advanced.py</code>). The program displays dataset information, showing you the structure of data that machine learning models learn from.
+            </div>
+        </section>
+
+        <section>
+            <h2>Web-Based Workflow (Alternative)</h2>
+            <p>
+                If you prefer working entirely in your browser without installing Python locally, you can use Google Colab notebooks combined with Claude.ai for AI assistance. This approach requires no installation and works on any device with internet access. Google Colab provides a free Python environment that runs in the cloud with scikit-learn, pandas, and matplotlib already installed, while Claude.ai offers conversational AI help through a web interface. For machine learning specifically, Colab is particularly well-suited because it displays visualizations, data tables, and model performance metrics directly in the notebook.
+            </p>
+
+            <p>
+                The web-based workflow uses two browser tabs working together. In one tab, you have Claude.ai open where you can ask questions about machine learning concepts, request code explanations, and get help implementing algorithms. In the other tab, you have Google Colab where you write and run your actual code. You move between these tabs naturally: ask Claude for help, receive code or explanations, copy relevant code to Colab, test it, and return to Claude with follow-up questions or to report results.
+            </p>
+
+            <h3>Opening Your Colab Notebook</h3>
+            <p>
+                Google Colab notebooks for this project are hosted on GitHub and can be opened directly in Colab with a single click. Choose either the beginner or advanced version based on your experience level. The notebooks contain the same starter code as the downloadable Python files, but formatted as interactive cells that you can run individually. All required libraries are pre-installed in Colab, so you can start working with machine learning immediately without any setup.
+            </p>
+
+            <div style="display: flex; gap: 1rem; margin: 2rem 0; flex-wrap: wrap;">
+                <a href="https://colab.research.google.com/github/deweydex/2plus1Coding/blob/main/colab-notebooks/ml_beginner.ipynb" class="btn" target="_blank">
+                    Open Beginner Notebook in Colab →
+                </a>
+                <a href="https://colab.research.google.com/github/deweydex/2plus1Coding/blob/main/colab-notebooks/ml_advanced.ipynb" class="btn btn-secondary" target="_blank">
+                    Open Advanced Notebook in Colab →
+                </a>
+            </div>
+
+            <p>
+                When the notebook opens in Colab, you will see cells containing markdown explanations and Python code. Run the existing code cells to see what your starting point provides. In Colab, you run a cell by clicking the play button on the left side of the cell, or by selecting the cell and pressing Shift+Enter. For machine learning, the output appears directly below the cell, displaying dataset statistics, model performance metrics, and visualizations. This immediate feedback makes it easy to see whether your models are learning effectively.
+            </p>
+
+            <h3>Working Between Claude.ai and Colab</h3>
+            <p>
+                Arrange your browser so you can easily switch between Claude.ai and Colab tabs, or use split-screen if your display is large enough. When you want to implement a machine learning technique or understand a concept better, describe what you want to Claude.ai in the first tab. Be specific about your current code state and what you are trying to accomplish. Claude will respond with explanations, code suggestions, or questions to clarify your intent.
+            </p>
+
+            <p>
+                When Claude provides code, read through it first to understand what it does. Machine learning code often involves multiple steps: loading data, splitting into training and testing sets, creating and training a model, making predictions, and evaluating performance. Understanding each step before running the code helps you learn the machine learning workflow rather than just copying commands. After reviewing the code, copy relevant portions and paste them into appropriate cells in your Colab notebook. Run the cell to test it and examine the results. If it works as expected, you can proceed to the next step. If it produces errors or unexpected results, return to Claude with specific information about what went wrong.
+            </p>
+
+            <p>
+                This iterative workflow of asking, implementing, testing, and refining mirrors how professional data scientists work with AI assistance tools. You maintain control over what code goes into your project while leveraging AI help for implementation details, conceptual explanations, and debugging suggestions. The back-and-forth develops your ability to communicate technical problems clearly and to critically evaluate AI-generated solutions.
+            </p>
+
+            <h3>Saving Your Work</h3>
+            <p>
+                Google Colab notebooks auto-save to your Google Drive periodically, but you should also save manually using File > Save from the Colab menu, especially before closing the tab. If you make a copy of the notebook to your own Drive (File > Save a copy in Drive), you create a personal version that you can modify without affecting the original. This personal copy persists across sessions, allowing you to leave and return to your work later.
+            </p>
+
+            <p>
+                When you finish working, you can download your completed notebook using File > Download > Download .ipynb to save it locally. You can also download just the Python code using File > Download > Download .py, which extracts code cells into a standalone Python file similar to the original starter code format. Visualizations can be downloaded by right-clicking on them in the output area. This flexibility allows you to work in Colab during development and export both code and results in whatever format you need.
+            </p>
+
+            <div class="note">
+                <strong>New to this workflow?</strong> Review the <a href="../getting-started-web.html">Web-Based Getting Started Guide</a> for detailed setup instructions for Claude.ai and Google Colab, including screenshots and troubleshooting tips.
             </div>
         </section>
 
@@ -307,7 +368,7 @@
     </main>
 
     <footer>
-        <p>Claude Code Learning Activity | QQI Level 5/6 Computer Science</p>
+        <p>Coding with AI - Learning Activity | QQI Level 5/6 Computer Science</p>
         <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
     </footer>
 </body>

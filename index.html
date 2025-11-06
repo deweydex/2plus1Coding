@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude Code Learning Activity - Home</title>
+    <title>Coding with AI - Learning Activity</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="site-title">Claude Code Learning Activity</a>
+            <a href="index.html" class="site-title">Coding with AI - Learning Activity</a>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="getting-started.html">Getting Started</a></li>
+                <li class="dropdown">
+                    <a href="#getting-started">Getting Started ▾</a>
+                    <div class="dropdown-content">
+                        <a href="getting-started-web.html">Web-Based (Recommended)</a>
+                        <a href="getting-started.html">Desktop Install</a>
+                    </div>
+                </li>
                 <li class="dropdown">
                     <a href="#projects">Projects ▾</a>
                     <div class="dropdown-content">
@@ -30,11 +36,46 @@
     </nav>
 
     <main>
-        <h1>Coding with AI: An Introduction to Claude Code</h1>
+        <h1>Coding with AI: Learning to Program with AI Assistance</h1>
 
         <div class="intro">
-            This activity introduces you to Claude Code, a powerful tool that allows you to collaborate with artificial intelligence to write, understand, and improve code. Over the course of 80-90 minutes, you will work through one of five project options, learning not just how to write code, but how to think about problems, break them into manageable pieces, and communicate effectively with AI coding assistants.
+            This activity introduces you to working with AI tools to write, understand, and improve code. Over the course of 80-90 minutes, you will work through one of five project options, learning not just how to write code, but how to think about problems, break them into manageable pieces, and communicate effectively with AI coding assistants.
         </div>
+
+        <section>
+            <h2>Choose Your Setup</h2>
+            <p>
+                This activity can be completed using either a desktop-based setup or entirely in the web browser. Both approaches teach the same concepts and complete the same projects. Choose the option that best fits your situation, technical environment, and preferences.
+            </p>
+
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>🌐 Web-Based Version</h3>
+                    <p><strong>Recommended for most students</strong></p>
+                    <p>
+                        Use Claude.ai and Google Colab in your browser. No installation required. Works on any device including Chromebooks. Perfect for classrooms, shared computers, or situations where installing software is difficult.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        <a href="getting-started-web.html" class="btn">Get Started (Web) →</a>
+                    </p>
+                </div>
+
+                <div class="project-card">
+                    <h3>💻 Desktop Version</h3>
+                    <p><strong>For advanced users</strong></p>
+                    <p>
+                        Install Claude Code CLI and work directly in your terminal. Provides integrated experience with local files. Requires installation of Node.js, npm, and Python. Better for students comfortable with command-line tools.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        <a href="getting-started.html" class="btn btn-secondary">Get Started (Desktop) →</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="note" style="margin-top: 2rem;">
+                <strong>Not sure which to choose?</strong> If you are working in a classroom, on a Chromebook, or unfamiliar with command-line tools, choose the web-based version. If you want the most integrated experience and are comfortable installing software, choose the desktop version. Both versions work equally well for learning.
+            </div>
+        </section>
 
         <section>
             <h2>What You Will Learn</h2>
@@ -167,11 +208,11 @@
         <section>
             <h2>Getting Started</h2>
             <p>
-                Before beginning your project, you will need to set up Claude Code on your machine and familiarize yourself with its basic operation. The <a href="getting-started.html">Getting Started</a> page walks you through installation, configuration, and your first interactions with the tool. Even if you have used command-line tools before, take a few minutes to review this page to understand the specific workflow for Claude Code.
+                Before beginning your project, you will need to set up your chosen environment. If you selected the web-based version, the <a href="getting-started-web.html">Web-Based Getting Started</a> page walks you through setting up Claude.ai and Google Colab accounts. If you chose the desktop version, the <a href="getting-started.html">Desktop Getting Started</a> page guides you through installation and configuration. Even if you have prior experience, review the appropriate guide to understand the specific workflow for this activity.
             </p>
 
             <p>
-                Once your environment is ready, review the <a href="prompting-guide.html">Prompting Guide</a> to understand how to communicate effectively with Claude Code. This guide goes beyond simple tips to explain the architectural principles that make certain prompting strategies effective. Understanding why specific approaches work will help you adapt when you encounter novel situations.
+                Once your environment is ready, review the <a href="prompting-guide.html">Prompting Guide</a> to understand how to communicate effectively with AI coding assistants. This guide goes beyond simple tips to explain the architectural principles that make certain prompting strategies effective. Understanding why specific approaches work will help you adapt when you encounter novel situations.
             </p>
 
             <p>
@@ -188,7 +229,7 @@
     </main>
 
     <footer>
-        <p>Claude Code Learning Activity | QQI Level 5/6 Computer Science</p>
+        <p>Coding with AI - Learning Activity | QQI Level 5/6 Computer Science</p>
         <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
     </footer>
 </body>

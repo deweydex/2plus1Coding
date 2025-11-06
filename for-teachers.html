@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Teachers - Claude Code Learning Activity</title>
+    <title>For Teachers - Coding with AI</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="site-title">Claude Code Learning Activity</a>
+            <a href="index.html" class="site-title">Coding with AI - Learning Activity</a>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="getting-started.html">Getting Started</a></li>
+                <li class="dropdown">
+                    <a href="#getting-started">Getting Started ▾</a>
+                    <div class="dropdown-content">
+                        <a href="getting-started-web.html">Web-Based (Recommended)</a>
+                        <a href="getting-started.html">Desktop Install</a>
+                    </div>
+                </li>
                 <li class="dropdown">
                     <a href="#projects">Projects ▾</a>
                     <div class="dropdown-content">
@@ -52,9 +58,101 @@
         </section>
 
         <section>
-            <h2>Pre-Workshop Preparation</h2>
+            <h2>Choosing Web-Based or Desktop Version for Your Classroom</h2>
             <p>
-                Successful workshops begin with thorough preparation. Ensure all computers have Claude Code installed and configured before students arrive. Test the installation on at least one machine to verify that the API keys work and that students can create and run simple Python programs. Technical problems at the start consume time and create frustration that affects the entire session.
+                The activity supports two distinct delivery methods: web-based using Claude.ai and Google Colab, or desktop-based using Claude Code CLI. Your choice affects preparation requirements, classroom management strategies, and the technical challenges you will encounter. Neither approach is universally superior; the best choice depends on your specific context and constraints.
+            </p>
+
+            <h3>When to Choose the Web-Based Version</h3>
+            <p>
+                The web-based approach is strongly recommended for most classroom settings, particularly if you are working with Chromebooks, shared computers, or any environment where installing software is restricted or complicated. It eliminates all installation requirements beyond a modern web browser and internet connection. Students can begin working immediately after creating free accounts with Claude.ai and Google. This drastically reduces setup time and technical friction at the start of the session.
+            </p>
+
+            <p>
+                The web-based version works exceptionally well in environments with reliable internet connectivity and when students may need to continue work on different devices. Google Colab auto-saves work to Google Drive, allowing students to move seamlessly between classroom computers, home devices, or mobile devices. The visual feedback in Colab, particularly for image processing and machine learning projects, provides immediate, clear results that enhance learning.
+            </p>
+
+            <p>
+                Consider the web-based version when you have limited time for technical setup, when institutional IT policies restrict software installation, when students use diverse personal devices, or when you want to minimize barriers to entry. The trade-off is complete dependence on internet connectivity and requiring students to manage two browser tabs simultaneously.
+            </p>
+
+            <h3>When to Choose the Desktop Version</h3>
+            <p>
+                The desktop version using Claude Code CLI provides a more integrated, professional development environment. Students work in a terminal with a proper code editor, experiencing workflows closer to professional software development practice. File management is simpler because everything is local, and there is no dependence on internet connectivity beyond the initial API calls to Claude.
+            </p>
+
+            <p>
+                Choose the desktop version when your students are comfortable with command-line tools, when you have time for proper installation and configuration before the session, when internet connectivity is unreliable, or when you specifically want to teach terminal-based development workflows as part of the learning outcomes. The desktop version requires more initial setup but provides a smoother, more cohesive experience once configured.
+            </p>
+
+            <p>
+                You can also offer both options simultaneously if your student population has varied needs and capabilities. Some students may appreciate the challenge of the desktop version while others benefit from the accessibility of the web version. Both approaches teach the same core concepts and complete the same projects; the learning outcomes are equivalent.
+            </p>
+        </section>
+
+        <section>
+            <h2>Pre-Workshop Preparation: Web-Based Version</h2>
+            <p>
+                Preparing for the web-based version differs significantly from desktop preparation. Your primary concerns are internet connectivity, account creation, and helping students understand the two-tab workflow. These preparation steps assume you have chosen the web-based delivery method.
+            </p>
+
+            <h3>Verifying Technical Requirements</h3>
+            <p>
+                Test your classroom's internet connection thoroughly before the session. Google Colab and Claude.ai both require stable connections; intermittent connectivity causes frustrating interruptions. Load both services on several computers simultaneously to ensure your network can handle the full class accessing cloud services concurrently. If connectivity is questionable, the desktop version may be more reliable despite requiring more setup.
+            </p>
+
+            <p>
+                Verify that your institution does not block access to claude.ai or colab.research.google.com. Some educational networks have restrictive filters that may block AI services. Test well in advance so you have time to request exceptions from your IT department if needed. Also confirm that students can create accounts with both services; some institutions restrict account creation from school networks.
+            </p>
+
+            <p>
+                Ensure all classroom computers have modern web browsers (Chrome, Firefox, Edge, or Safari). Google Colab works best in Chrome but functions in other browsers. Verify that browser pop-up blockers do not interfere with Claude.ai's interface, as some features may use pop-ups or new tabs.
+            </p>
+
+            <h3>Account Setup Strategy</h3>
+            <p>
+                Decide whether students will create accounts during class time or beforehand. Creating Claude.ai and Google accounts during the session typically takes 5-10 minutes per student, but can take longer if students have forgotten passwords or encounter verification issues. If possible, have students create both accounts before arriving, sharing the getting-started-web.html guide for self-service preparation. This preserves class time for actual learning rather than administrative tasks.
+            </p>
+
+            <p>
+                If students must create accounts during class, build 15-20 minutes into your timeline for this process. Walk the entire class through account creation simultaneously, pausing to help students who encounter issues. Have a troubleshooting plan for students without email access or who have two-factor authentication complications. Some students may need to use temporary email services if they do not have personal email accounts.
+            </p>
+
+            <p>
+                For Claude.ai specifically, students need to verify their accounts via email, so they must have access to their email during the session. Google accounts for Colab require similar verification. Test the entire account creation and verification process yourself beforehand so you can confidently guide students through any complications.
+            </p>
+
+            <h3>Introducing the Two-Tab Workflow</h3>
+            <p>
+                The web-based version's defining characteristic is working across two browser tabs: Claude.ai for AI assistance and Google Colab for code execution. Many students, particularly those less experienced with computers, find managing two tabs cognitively demanding at first. Dedicate explicit time to explaining and demonstrating this workflow rather than assuming students will understand it implicitly.
+            </p>
+
+            <p>
+                Consider creating a brief demonstration at the start where you project your screen and show the complete cycle: asking Claude a question in one tab, receiving code, switching to the Colab tab, pasting code into a cell, executing it, observing results, and returning to Claude with follow-up questions. This concrete demonstration makes the abstract workflow tangible and gives students a mental model to follow.
+            </p>
+
+            <p>
+                Encourage students to arrange their browser tabs in a consistent order (Claude.ai first, Colab second, for example) so they develop muscle memory for switching. On larger monitors, students might benefit from browser windows side-by-side rather than tabbed. However, be mindful that many classroom computers have small screens where side-by-side windows create more frustration than benefit.
+            </p>
+
+            <h3>Preparing for Web-Specific Issues</h3>
+            <p>
+                Web-based delivery introduces challenges that desktop versions do not face. Have a plan for students who accidentally close their Colab tab and cannot find it again. Teach them early that Colab notebooks auto-save to Google Drive and can be reopened from drive.google.com. Consider having students bookmark their Colab notebooks immediately after opening them to prevent lost work.
+            </p>
+
+            <p>
+                Prepare for session timeout issues with Claude.ai. If students take long breaks or work slowly, they may find their Claude.ai session has expired, requiring them to refresh and potentially losing conversation context. Advise students to keep Claude.ai active and to copy important responses into their Colab notebooks as documentation.
+            </p>
+
+            <p>
+                Create a backup plan for complete internet outages. Can students work offline on planning and pseudocode? Do you have printed materials that allow some productive work without internet access? While rare, total connectivity failure should not completely derail the learning session if you have contingencies prepared.
+            </p>
+        </section>
+
+        <section>
+            <h2>Pre-Workshop Preparation: Desktop Version</h2>
+            <p>
+                Successful desktop workshops begin with thorough preparation. Ensure all computers have Claude Code installed and configured before students arrive. Test the installation on at least one machine to verify that the API keys work and that students can create and run simple Python programs. Technical problems at the start consume time and create frustration that affects the entire session.
             </p>
 
             <p>
@@ -258,7 +356,7 @@
     </main>
 
     <footer>
-        <p>Claude Code Learning Activity | QQI Level 5/6 Computer Science</p>
+        <p>Coding with AI - Learning Activity | QQI Level 5/6 Computer Science</p>
         <p>Licensed under MIT License | <a href="https://github.com/deweydex/2plus1Coding">View on GitHub</a></p>
     </footer>
 </body>
