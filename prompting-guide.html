@@ -33,7 +33,23 @@
             This guide goes beyond simple tips and tricks to help you understand how Claude Code actually works at a fundamental level. By understanding the underlying architecture and principles, you can develop intuitions about what makes prompts effective rather than memorizing a list of rules.
         </div>
 
-        <section>
+        <div class="table-of-contents">
+            <h2>On This Page</h2>
+            <ul>
+                <li><a href="#how-llms-work">How Large Language Models Work</a></li>
+                <li><a href="#why-iteration">Why Iteration Works: Building Context Gradually</a></li>
+                <li><a href="#testing-feedback">The Role of Testing in the Feedback Loop</a></li>
+                <li><a href="#effective-prompts">Crafting Effective Prompts</a></li>
+                <li><a href="#understanding-code">Understanding Code Claude Generates</a></li>
+                <li><a href="#prompting-patterns">Common Prompting Patterns</a></li>
+                <li><a href="#advanced">Advanced Techniques</a></li>
+                <li><a href="#pitfalls">Common Pitfalls and How to Avoid Them</a></li>
+                <li><a href="#putting-together">Putting It All Together</a></li>
+                <li><a href="#resources">Resources for Deeper Understanding</a></li>
+            </ul>
+        </div>
+
+        <section id="how-llms-work">
             <h2>How Large Language Models Work</h2>
             <p>
                 Claude Code is powered by a large language model (LLM), which is a type of artificial intelligence trained on vast amounts of text data. To prompt effectively, you need to understand the basic architecture and operation of these models, as their design fundamentally shapes how they respond to your requests.
@@ -70,7 +86,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="why-iteration">
             <h2>Why Iteration Works: Building Context Gradually</h2>
             <p>
                 Professional software development is iterative by nature. You build a small piece, test it, understand it, then build the next piece. This approach is not just good practice; it aligns with how language models work most effectively. When you build incrementally with Claude Code, each step adds to the context in a manageable way.
@@ -89,7 +105,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="testing-feedback">
             <h2>The Role of Testing in the Feedback Loop</h2>
             <p>
                 Testing is not merely about finding bugs; it is about creating a feedback loop that informs both you and the model about what is working. When you test code and then report results back to Claude, you are providing new information that the model can use to refine its understanding of what you are trying to build.
@@ -104,7 +120,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="effective-prompts">
             <h2>Crafting Effective Prompts</h2>
             <p>
                 With an understanding of how the model works, you can now appreciate why certain prompting strategies are effective. The following principles are not arbitrary rules but direct consequences of the model's architecture and training.
@@ -147,7 +163,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="understanding-code">
             <h2>Understanding Code Claude Generates</h2>
             <p>
                 Claude can generate code much faster than you can write it by hand, but speed without understanding provides little learning value. The goal of this activity is not to finish quickly but to develop skills and knowledge. Treat Claude-generated code as something to study and understand, not just run.
@@ -171,7 +187,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="prompting-patterns">
             <h2>Common Prompting Patterns</h2>
             <p>
                 Certain types of requests come up repeatedly in software development. Understanding common patterns helps you communicate more efficiently with Claude Code.
@@ -214,7 +230,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="advanced">
             <h2>Advanced Techniques</h2>
             <p>
                 Once you are comfortable with basic prompting, you can employ more sophisticated strategies to work more effectively.
@@ -240,7 +256,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="pitfalls">
             <h2>Common Pitfalls and How to Avoid Them</h2>
 
             <h3>Accepting Code Without Understanding</h3>
@@ -264,7 +280,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="putting-together">
             <h2>Putting It All Together</h2>
             <p>
                 Effective prompting is not about memorizing magic phrases. It is about understanding how the underlying technology works and aligning your communication style with that architecture. Language models are probability engines operating within context windows, generating text token by token based on patterns learned from training data. They do not have persistent memory, cannot verify their outputs by running code, and work best when building incrementally with clear, specific guidance.
@@ -279,7 +295,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="resources">
             <h2>Resources for Deeper Understanding</h2>
             <p>
                 If you want to learn more about how large language models work and how to use them effectively, several high-quality educational resources are available. These materials provide deeper technical background and can enhance your understanding of the principles discussed in this guide.
